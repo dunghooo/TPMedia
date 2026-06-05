@@ -1,0 +1,117 @@
+.ListProjectPage {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+  background: #f6f6f6;
+  box-sizing: border-box;
+}
+
+.ProjectList {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.project-list__hero {
+  position: relative;
+  background: #111;
+  color: #fff;
+  padding: 3rem 2rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.project-list__hero::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.12);
+}
+
+.project-list__hero h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin: 0 0 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.project-list__hero p {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #d4d4d4;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.project-list__grid {
+  width: 90%;
+  margin: 2rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.project-card {
+  overflow: visible;
+  border-radius: 16px;
+  position: relative;
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 16px;
+  background: #c4c4c9;
+  display: block;
+  transition: transform 0.35s ease;
+  transform-origin: center;
+}
+
+.project-card:hover {
+  z-index: 2;
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.project-card h3 {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  color: #111;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.project-card p,
+.project-card__badge {
+  display: none;
+}
+
+.project-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  overflow: visible;
+}
+
+@media (max-width: 1200px) {
+  .project-list__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .project-list__grid {
+    grid-template-columns: 1fr;
+  }
+}

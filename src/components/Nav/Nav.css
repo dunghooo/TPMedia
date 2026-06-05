@@ -1,0 +1,144 @@
+.header-container {
+  height: 0;
+}
+
+.nav-bar {
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0));
+  height: 100px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nav-bar--scrolled {
+  background: white;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-left .logo {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  text-decoration: none;
+  transition: color 0.25s ease;
+  background-color: #f4a300;
+  -webkit-mask-image: url("../../assets/TP-media-logo-03.png");
+  mask-image: url("../../assets/TP-media-logo-03.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.nav-bar--scrolled .logo {
+  color: black;
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 3rem;
+}
+
+.navbar-center .nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-center .nav-links li {
+  margin: 0;
+}
+
+.navbar-center .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 550;
+  transition: color 0.25s ease;
+}
+
+.nav-bar--scrolled .nav-links a {
+  color: black;
+}
+
+/* Responsive adjustments (no hamburger) */
+@media (max-width: 1024px) {
+  .navbar-center .nav-links {
+    gap: 40px;
+  }
+  .navbar-left .logo {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-bar {
+    height: 64px;
+    padding: 0 0.75rem;
+  }
+
+  .navbar-left .logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .navbar-center {
+    padding: 0 1rem;
+  }
+
+  .navbar-center .nav-links {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navbar-center .nav-links a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-bar {
+    height: auto;
+    padding: 0.5rem 0.75rem 0.75rem;
+    align-items: flex-start;
+  }
+
+  .navbar-left {
+    margin-right: 0.5rem;
+  }
+
+  .navbar-center .nav-links {
+    width: 100%;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .navbar-center .nav-links li {
+    width: 100%;
+  }
+
+  .navbar-center .nav-links a {
+    display: block;
+    padding: 6px 0;
+    text-align: left;
+    width: 100%;
+  }
+}

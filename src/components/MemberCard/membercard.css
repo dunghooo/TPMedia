@@ -1,0 +1,136 @@
+.Member-achievements-grid {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.Member-achievement-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.Member-achievement-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.Member-achievement-item p {
+  margin-top: 8px;
+  color: #050505;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.member-name {
+  font-size: 150px;
+  margin-left: 30px;
+  color: #050505;
+  line-height: 0.95;
+}
+
+.member-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #050505;
+  font-size: 150px;
+  line-height: 0.95;
+}
+
+.member-intro {
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 30px;
+}
+
+.member-company {
+  text-align: right;
+  margin-right: 80px;
+  font-size: 140px;
+  color: #050505;
+}
+
+.member-card-header {
+  width: 100%;
+}
+
+.member-card-body {
+  width: 90%;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #ffffff, #f3f3f3);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.member-card-body img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.Member-Contract {
+  margin-top: 80px;
+  padding: 10px 20px;
+  background-color: #050505;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  width: fit-content;
+  justify-self: end;
+}
+
+.Member-Contract:hover {
+  background-color: #333;
+}
+
+.Member-bio p {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.Member-contract p {
+  text-align: right;
+  font-size: 18px;
+}
+
+.membercard-footer h5 {
+  text-align: center;
+  margin-top: 20px;
+  color: #050505;
+  line-height: 0.5;
+}
+
+.membercard-footer p {
+  text-align: center;
+  color: #050505;
+  font-size: 18px;
+}
+
+.membercard-footer-button {
+  background-color: #050505;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  width: 12%;
+  margin: 20px auto;
+}
+
+
+
+.membercard-footer-button:hover {
+  background-color: #333;
+}
+
+.membercard-footer-button p {
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}

@@ -1,0 +1,61 @@
+.NavList {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+}
+
+.NavList-left .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+}
+
+.NavList-left .logo span {
+  color: #ff6b6b;
+}
+
+.NavList-right .nav-linksList {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.NavList-right .nav-linksList a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.18s ease;
+}
+
+.NavList-right .nav-linksList a:hover {
+  color: #ff6b6b;
+}
+
+@media (max-width: 640px) {
+  .NavList {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .NavList-right .nav-linksList {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .project-list__hero {
+    padding: 2rem 1.25rem;
+  }
+}

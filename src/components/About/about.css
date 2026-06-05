@@ -1,0 +1,169 @@
+.about-page {
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px 20px 50px;
+}
+
+.about-description {
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+.about-description__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-description__text h1 {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  margin: 0;
+  color: #111;
+}
+
+.about-description__text p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #444;
+  max-width: 95%;
+}
+
+.about-description__visual {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.about-card {
+  background: #f1f2f6;
+  border-radius: 20px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent);
+  pointer-events: none;
+}
+
+.about-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-card--large {
+  min-height: 320px;
+}
+
+.about-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.about-card--small {
+  min-height: 140px;
+}
+
+.about-services {
+  display: grid;
+  gap: 32px;
+}
+
+.about-services__coverage {
+  border: 1px solid #d8dde5;
+  border-radius: 24px;
+  padding: 32px;
+  background: #fff;
+}
+
+.about-services__coverage h2 {
+  margin: 0 0 24px;
+  font-size: 1.3rem;
+  color: #111;
+  letter-spacing: 0.01em;
+}
+
+.about-services__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.about-services__columns ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.about-services__columns li {
+  position: relative;
+  padding-left: 22px;
+  color: #4a4a4a;
+  line-height: 1.8;
+  font-size: 0.96rem;
+}
+
+.about-services__columns li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #111;
+}
+
+.about-services__details {
+  display: grid;
+  gap: 20px;
+}
+
+.about-service-block {
+  border: 1px solid #d8dde5;
+  border-radius: 24px;
+  padding: 28px;
+  background: #fff;
+}
+
+.about-service-block h3 {
+  margin: 0 0 16px;
+  font-size: 1.15rem;
+  color: #111;
+}
+
+.about-service-block p {
+  margin: 0;
+  color: #555;
+  line-height: 1.8;
+  font-size: 0.96rem;
+}
+
+@media (max-width: 860px) {
+  .about-description {
+    grid-template-columns: 1fr;
+  }
+
+  .about-description__visual,
+  .about-services__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card--large {
+    min-height: 240px;
+  }
+}
