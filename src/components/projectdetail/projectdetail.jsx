@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import "./projectdetail.css";
 import image6 from "../../assets/p5.jpg";
 import event1 from "../../assets/event1.jpg";
@@ -12,6 +13,7 @@ import image9 from "../../assets/p9.jpg";
 import image10 from "../../assets/p10.jpg";
 
 function ProjectDetail() {
+  const { t } = useTranslation();
   const relatedProjects = [
     {
       title: "中華奧林匹克盃 2025 | 美業交流競技暨美饌藝術美學",
@@ -62,13 +64,9 @@ function ProjectDetail() {
       <section className="project-detail">
         <div className="detail-header">
           <div className="detail-info">
-            <p className="tagline">
-              Event · Marketing · Visual Design · Video Film
-            </p>
+            <p className="tagline">{t('projectDetail.tagline')}</p>
             <h2>WORKSHOP REBORN | LESS IS MORE</h2>
-            <p className="description">
-              Làm dự án mà khách mời tham dự toàn mấy chị em xinh gái không , giờ khó chọn quá không biết nên chọn chị nào.....
-            </p>
+            <p className="description">{t('projectDetail.shortDescription', 'Mô tả dự án...')}</p>
           </div>
           <div className="info-card">
             <p className="info-label">Client</p>
@@ -100,7 +98,7 @@ function ProjectDetail() {
         </div>
 
         <div className="stats-block">
-          <h3>NHỮNG THÀNH TỤ ĐẠT ĐƯỢC TỪ DỰ ÁN</h3>
+          <h3>{t('projectDetail.statsTitle')}</h3>
           <p className="stats-description">
             Giới thiệu quy mô dự án và các thành công dự án mang lại.
           </p>

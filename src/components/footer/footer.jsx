@@ -1,4 +1,5 @@
 import "./footer.css";
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -8,14 +9,15 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <>
       <div className="footer-section">
         <div className="footer-nav-row">
-          <span>PROJECT</span>
-          <span>ABOUT US</span>
-          <span>MEMBER</span>
-          <span>CONTACT</span>
+          <span>{t('footer.project')}</span>
+          <span>{t('footer.about')}</span>
+          <span>{t('footer.member')}</span>
+          <span>{t('footer.contact')}</span>
         </div>
         <div className="footer-card">
           <div className="footer-card__col footer-logo-col">
@@ -26,31 +28,29 @@ function Footer() {
           </div>
 
           <div className="footer-card__col">
-            <p className="footer-title">PROJECT</p>
+            <p className="footer-title">{t('footer.project')}</p>
             <ul>
-              <li>PROJECT</li>
-              <li>ABOUT US</li>
-              <li>MEMBER CARD</li>
+              <li>{t('footer.project')}</li>
+              <li>{t('footer.about')}</li>
+              <li>{t('footer.member')}</li>
             </ul>
           </div>
 
           <div className="footer-card__col">
-            <p className="footer-title">CONTACT US</p>
+            <p className="footer-title">{t('footer.contact_us')}</p>
             <ul>
-              <li>THÔNG TIN GMAIL</li>
-              <li>THÔNG TIN SDT</li>
+              <li>{t('footer.info_email')}</li>
+              <li>{t('footer.info_phone')}</li>
             </ul>
           </div>
 
           <div className="footer-card__col footer-copy-col">
-            <p className="footer-title">CONTACT</p>
+            <p className="footer-title">{t('footer.contact')}</p>
             <ul>
-              <li>THÔNG TIN ĐỊA CHỈ</li>
-              <li>THÔNG TIN MÃ SỐ THUẾ</li>
+              <li>{t('footer.address')}</li>
+              <li>{t('footer.tax')}</li>
             </ul>
-            <div className="footer-copy-right">
-              ©2023 Webestica ALL RIGHTS RESERVED
-            </div>
+            <div className="footer-copy-right">{t('footer.copyright')}</div>
             <div className="footer-social">
               <span>
                 <FontAwesomeIcon icon={faFacebook} />

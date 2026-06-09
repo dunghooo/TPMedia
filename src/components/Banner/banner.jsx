@@ -1,22 +1,21 @@
 import "./banner.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function Banner() {
+  const { t } = useTranslation();
   return (
     <header className="flexible-header">
       <div className="flexible-header__overlay">
         <div className="flexible-header__content">
-          <h1>Build Digital Stories That Stand Out</h1>
-          <p>
-            Creative production, branding, and media campaigns designed for
-            modern teams.
-          </p>
+          <h1>{t('banner.title')}</h1>
+          <p>{t('banner.subtitle')}</p>
           <div className="flexible-header__actions">
             <Link to="/projects" className="primary-action">
-              View Projects
+              {t('banner.viewProjects')}
             </Link>
             <Link to="/contactUs" className="secondary-action">
-              Contact Us
+              {t('banner.contactUs')}
             </Link>
           </div>
         </div>

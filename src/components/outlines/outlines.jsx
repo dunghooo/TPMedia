@@ -1,4 +1,5 @@
 import "./outlines.css";
+import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import defaultProjectImage from "../../assets/hero.png";
@@ -61,6 +62,7 @@ const achievements = [
 ];
 
 function Outlines() {
+  const { t } = useTranslation();
   const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8];
 
   const logoTrackRef = useRef(null);
@@ -122,8 +124,8 @@ function Outlines() {
           </div>
           <div className="banner-content">
             <div className="banner-item">
-              <p>ĐIỂM NỔI BẬT HOẶC CÂU</p>
-              <span>CHUYÊN NGÀNH</span>
+              <p>{t('outlines.highlightText', 'ĐIỂM NỔI BẬT HOẶC CÂU')}</p>
+              <span>{t('outlines.highlightSub', 'CHUYÊN NGÀNH')}</span>
             </div>
             <div className="banner-item">
               <p>ĐIỂM NỔI BẬT HOẶC CÂU</p>
@@ -153,17 +155,11 @@ function Outlines() {
       </div>
       <div className="Description">
         <div className="description-content">
-          <p className="description-eyebrow">DỰ ÁN NỔI BẬT</p>
-          <p className="description-text">
-            Một chút Bts của sự kiện ngày 27 vừa rồi , cả Team chạy hồng hộc từ
-            ngày 26 đến hôm nay mới chính thức kết thúc dự án . Cảm ơn mọi người
-            từ những bạn làm việc Remote ở Việt Nam hay những bạn làm Offline
-            tại sự kiện đã cống hiến hết mình cho Team . Một lần nữa cảm ơn mọi
-            người đã đi với TP Media hết một dự án dài như vậy .
-          </p>
+          <p className="description-eyebrow">{t('outlines.highlightEyebrow')}</p>
+          <p className="description-text">{t('outlines.descriptionText', 'Một chút Bts của sự kiện...')}</p>
 
           <div className="description-services">
-            <h3>CÁC HẠNG MỤC MÌNH ĐÃ LÀM VIỆC</h3>
+            <h3>{t('about.servicesTitle')}</h3>
             <div className="service-columns">
               <ul>
                 <li>Product Design</li>
@@ -198,9 +194,9 @@ function Outlines() {
       </div>
       <div className="ListProject" id="projects">
         <div className="list-project__header">
-          <h2>CÁC DỰ ÁN NỔI BẬT</h2>
+          <h2>{t('outlines.featuredProjects')}</h2>
           <Link to="/projects" className="view-all-link">
-            View all projects
+            {t('outlines.viewAll')}
           </Link>
         </div>
 

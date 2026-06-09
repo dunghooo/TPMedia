@@ -1,20 +1,18 @@
 import "./about.css";
+import { useTranslation } from 'react-i18next';
 import largeImage from "../../assets/event1.jpg";
 import smallImage1 from "../../assets/event2.jpg";
 import smallImage2 from "../../assets/event3.jpg";
 import smallImage3 from "../../assets/event4.jpg";
 
 function About() {
+  const { t } = useTranslation();
   return (
     <div className="about-page">
       <div className="about-description">
         <div className="about-description__text">
-          <h1>VỀ CHÚNG TÔI TP MEDIA</h1>
-          <p>
-            We are a company dedicated to providing the best services to our
-            customers. Our team builds strong digital experiences with a focus on
-            creativity, reliability, and modern design.
-          </p>
+          <h1>{t('about.title')}</h1>
+          <p>{t('about.description')}</p>
         </div>
 
         <div className="about-description__visual">
@@ -53,17 +51,17 @@ function About() {
 
       <section className="about-services">
         <div className="about-services__coverage">
-          <h2>WHAT WE COVER IN THIS SERVICE</h2>
+          <h2>{t('about.servicesTitle')}</h2>
           <div className="about-services__columns">
             <ul>
-              <li>Improve productivity and performance</li>
-              <li>Get peace of mind knowing your services are in trusted hands</li>
-              <li>Reduce your service costs</li>
+              {t('about.serviceList', { returnObjects: true }).slice(0,3).map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
             </ul>
             <ul>
-              <li>Hassle-free setup & management</li>
-              <li>Lifetime license, no monthly or yearly fee</li>
-              <li>User-friendly admin & reporting features</li>
+              {t('about.serviceList', { returnObjects: true }).slice(3).map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
             </ul>
           </div>
         </div>

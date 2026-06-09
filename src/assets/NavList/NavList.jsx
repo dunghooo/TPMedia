@@ -1,7 +1,9 @@
 import "./NavList.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function NavList() {
+  const { t } = useTranslation();
   return (
     <>
       <div className="NavList">
@@ -14,16 +16,16 @@ function NavList() {
         <div className="NavList-right">
           <ul className="nav-linksList">
             <li>
-              <Link to="/projects">Project</Link>
+              <Link to="/projects">{t('nav.projects')}</Link>
             </li>
             <li>
-              <Link to="/aboutUs">About Us</Link>
+              <Link to="/aboutUs">{t('nav.about')}</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/blog">{t('nav.blog', 'Blog')}</Link>
             </li>
             <li>
-              <Link to="/careers">Careers</Link>
+              <Link to="/careers">{t('nav.careers', 'Careers')}</Link>
             </li>
           </ul>
         </div>

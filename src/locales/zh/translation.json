@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "projects": "项目",
+    "about": "关于我们",
+    "members": "成员",
+    "contact": "联系我们",
+    "code_vn": "VN",
+    "code_zh": "CN",
+    "blog": "博客",
+    "careers": "招聘"
+  },
+  "banner": {
+    "title": "打造引人注目的数位故事",
+    "subtitle": "为现代团队设计的创意制作、品牌和媒体活动。",
+    "viewProjects": "查看项目",
+    "contactUs": "联系我们"
+  },
+  "about": {
+    "title": "关于 TP MEDIA",
+    "description": "我们是一家致力于为客户提供最佳服务的公司。我们的团队专注于创造性、可靠性和现代设计的数字体验。",
+    "servicesTitle": "我们提供的服务",
+    "serviceList": [
+      "产品设计",
+      "用户界面",
+      "用户体验",
+      "品牌识别",
+      "交互设计"
+    ]
+  },
+  "contact": {
+    "label": "联系我们",
+    "heading": "让我们处理您的问题",
+    "officeOnline": "线上办公室 :",
+    "submit": "提交"
+  },
+  "contact.formName": "姓名",
+  "contact.formEmail": "邮箱地址",
+  "contact.formPhone": "电话号码",
+  "contact.formMessage": "留言",
+  "footer": {
+    "project": "项目",
+    "about": "关于我们",
+    "member": "成员",
+    "contact": "联系我们",
+    "contact_us": "联系我们",
+    "info_email": "邮箱信息",
+    "info_phone": "电话信息",
+    "address": "地址信息",
+    "tax": "税务信息",
+    "copyright": "©2023 Webestica 版权所有"
+  },
+  "member": {
+    "intro": "我是",
+    "name": "TRẦN HOÀNG",
+    "title": "PHONG",
+    "company": "FOUNDERS TP MEDIA",
+    "greeting": "你好！我是一个喜欢学习新事物并热爱技术的越南年轻摄像师...",
+    "letsTalk": "让我们聊聊"
+  },
+  "outlines": {
+    "highlightEyebrow": "精选项目",
+    "viewAll": "查看所有项目",
+    "featuredProjects": "精选项目",
+    "achievements": "精彩成就"
+  ,
+  "highlightText": "亮点或标语",
+  "highlightSub": "专业领域",
+  "descriptionText": "关于最近活动的一些幕后花絮，团队从准备到收尾的努力与付出，感谢所有贡献者。"
+  },
+  "projectDetail": {
+    "tagline": "活动 · 营销 · 视觉设计 · 视频",
+    "shortDescription": "项目简短描述...",
+    "related": "其他项目",
+    "statsTitle": "项目带来的成果"
+  },
+  "notfound": {
+    "title": "404",
+    "heading": "页面未找到",
+    "message": "您正在查找的页面不存在或已被移动",
+    "back": "返回首页"
+  }
+}

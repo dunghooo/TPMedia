@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./listProject.css";
+import { useTranslation } from 'react-i18next';
 import image5 from "../../assets/p1.jpg";
 import image6 from "../../assets/p5.jpg";
 import image7 from "../../assets/p7.jpg";
@@ -36,11 +37,12 @@ const projects = [
 ];
 
 function ListProject() {
+  const { t } = useTranslation();
   return (
     <>
       <div className="ProjectList">
         <div className="project-list__hero">
-          <h2>OUR PROJECTS</h2>
+          <h2>{t('outlines.featuredProjects')}</h2>
         </div>
       </div>
       <div className="project-list__grid">

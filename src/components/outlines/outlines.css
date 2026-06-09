@@ -82,10 +82,6 @@
   justify-content: center;
   justify-items: center;
   gap: 32px;
-}
-
-/* Slider styles for logo-section */
-.logo-section {
   position: relative;
   margin-top: 50px;
   overflow: hidden;
@@ -99,6 +95,8 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 .logo-track::-webkit-scrollbar {
   display: none;
@@ -109,6 +107,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 .logo-item img {
   max-width: 100%;
@@ -149,12 +148,63 @@
   }
 }
 
-@media (max-width: 600px) {
-  .logo-item {
-    flex: 0 0 calc(50% - 12px);
+@media (max-width: 768px) {
+  .logo-section {
+    width: calc(100% - 32px);
+    margin: 40px auto;
+    padding: 0 16px;
   }
+
+  .logo-track {
+    gap: 12px;
+  }
+
+  .logo-item {
+    flex: 0 0 calc(50% - 6px);
+  }
+
   .logo-item img {
-    height: 40px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo-section {
+    width: calc(100% - 24px);
+    margin: 32px auto;
+    padding: 0 12px;
+  }
+
+  .logo-track {
+    gap: 10px;
+  }
+
+  .logo-item {
+    flex: 0 0 calc(50% - 5px);
+  }
+
+  .logo-item img {
+    height: 36px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo-section {
+    width: calc(100% - 20px);
+    margin: 24px auto;
+    padding: 0 10px;
+  }
+
+  .logo-track {
+    gap: 8px;
+  }
+
+  .logo-item {
+    flex: 0 0 calc(50% - 4px);
+  }
+
+  .logo-item img {
+    height: 32px;
   }
 }
 
@@ -620,7 +670,6 @@
 
 .feature-category-logo {
   margin: 0 auto;
-  width: 500px;
   height: 500px;
   background-color: #f4a300;
   -webkit-mask-image: url("../../assets/TP-media-logo-03.png");

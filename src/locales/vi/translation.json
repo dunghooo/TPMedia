@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "projects": "DỰ ÁN",
+    "about": "VỀ CHÚNG TÔI",
+    "members": "THÀNH VIÊN",
+    "contact": "LIÊN HỆ",
+    "code_vn": "VN",
+    "code_zh": "CN",
+    "blog": "Blog",
+    "careers": "Tuyển dụng"
+  },
+  "banner": {
+    "title": "Build Digital Stories That Stand Out",
+    "subtitle": "Creative production, branding, and media campaigns designed for modern teams.",
+    "viewProjects": "Xem dự án",
+    "contactUs": "Liên hệ"
+  },
+  "about": {
+    "title": "VỀ CHÚNG TÔI TP MEDIA",
+    "description": "Chúng tôi là một công ty cung cấp dịch vụ sáng tạo, xây dựng trải nghiệm số với trọng tâm vào sự sáng tạo, độ tin cậy và thiết kế hiện đại.",
+    "servicesTitle": "CÁC HẠNG MỤC MÌNH ĐÃ LÀM VIỆC",
+    "serviceList": [
+      "Product Design",
+      "User Interface",
+      "User Experience",
+      "Brand Identity",
+      "Interaction Design"
+    ]
+  },
+  "contact": {
+    "label": "LIÊN HỆ",
+    "heading": "HÃY ĐỂ CHÚNG TÔI XỬ LÝ VẤN ĐỀ CỦA BẠN",
+    "officeOnline": "VĂN PHÒNG ONLINE :",
+    "submit": "Gửi"
+  },
+  "contact.formName": "Name",
+  "contact.formEmail": "Email Address",
+  "contact.formPhone": "Phone Number",
+  "contact.formMessage": "Message",
+  "footer": {
+    "project": "DỰ ÁN",
+    "about": "VỀ CHÚNG TÔI",
+    "member": "THÀNH VIÊN",
+    "contact": "LIÊN HỆ",
+    "contact_us": "LIÊN HỆ",
+    "info_email": "THÔNG TIN GMAIL",
+    "info_phone": "THÔNG TIN SDT",
+    "address": "THÔNG TIN ĐỊA CHỈ",
+    "tax": "THÔNG TIN MÃ SỐ THUẾ",
+    "copyright": "©2023 Webestica ALL RIGHTS RESERVED"
+  },
+  "member": {
+    "intro": "Tôi là",
+    "name": "TRẦN HOÀNG",
+    "title": "PHONG",
+    "company": "FOUNDERS TP MEDIA",
+    "greeting": "Xin chào! Tôi là một nhà quay phim trẻ người Việt...",
+    "letsTalk": "Hãy nói chuyện"
+  },
+  "outlines": {
+    "highlightEyebrow": "DỰ ÁN NỔI BẬT",
+    "viewAll": "Xem tất cả dự án",
+    "featuredProjects": "CÁC DỰ ÁN NỔI BẬT",
+    "achievements": "CÁC THÀNH TÍCH NỔI BẬT"
+  ,
+  "highlightText": "ĐIỂM NỔI BẬT HOẶC CÂU",
+  "highlightSub": "CHUYÊN NGÀNH",
+  "descriptionText": "Một chút Bts của sự kiện ngày 27 vừa rồi , cả Team chạy hồng hộc từ ngày 26 đến hôm nay mới chính thức kết thúc dự án . Cảm ơn mọi người từ những bạn làm việc Remote ở Việt Nam hay những bạn làm Offline tại sự kiện đã cống hiến hết mình cho Team . Một lần nữa cảm ơn mọi người đã đi với TP Media hết một dự án dài như vậy ."
+  },
+  "projectDetail": {
+    "tagline": "Event · Marketing · Visual Design · Video Film",
+    "shortDescription": "Mô tả ngắn về dự án...",
+    "related": "CÁC DỰ ÁN KHÁC",
+    "statsTitle": "NHỮNG THÀNH TỤ ĐẠT ĐƯỢC TỪ DỰ ÁN"
+  },
+  "notfound": {
+    "title": "404",
+    "heading": "TRANG KHÔNG TỒN TẠI",
+    "message": "Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển",
+    "back": "Về trang chủ"
+  }
+}
