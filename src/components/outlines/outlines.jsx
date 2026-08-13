@@ -72,6 +72,9 @@ function Outlines() {
   // image-placeholder slider
   const slides = [image2, image3, image4, image5];
   const [descIndex, setDescIndex] = useState(0);
+  
+  // achievement expand/collapse
+  const [expandedAchievements, setExpandedAchievements] = useState({});
   useEffect(() => {
     const id = setInterval(() => {
       setDescIndex((i) => (i + 1) % slides.length);
@@ -113,6 +116,13 @@ function Outlines() {
     return () => clearInterval(id);
   }, [isPaused]);
 
+  const toggleAchievementExpand = (index) => {
+    setExpandedAchievements(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
   return (
     <>
       <div className="banner-wrapper">
@@ -123,18 +133,8 @@ function Outlines() {
             </span>
           </div>
           <div className="banner-content">
-            <div className="banner-item">
-              <p>{t('outlines.highlightText', 'ĐIỂM NỔI BẬT HOẶC CÂU')}</p>
-              <span>{t('outlines.highlightSub', 'CHUYÊN NGÀNH')}</span>
-            </div>
-            <div className="banner-item">
-              <p>ĐIỂM NỔI BẬT HOẶC CÂU</p>
-              <span>CHUYÊN NGÀNH</span>
-            </div>
-            <div className="banner-item">
-              <p>ĐIỂM NỔI BẬT HOẶC CÂU</p>
-              <span>CHUYÊN NGÀNH</span>
-            </div>
+            <h2>{t('outlines.highlightText', 'GEN Z VIỆT NAM - CHẤT VIỆT, TẦM QUỐC TẾ')}</h2>
+            <p>{t('outlines.highlightSub', 'Đối tác sự kiện số 1 Đài Loan')}</p>
           </div>
           <div className="decor">✦</div>
         </div>
@@ -156,22 +156,16 @@ function Outlines() {
       <div className="Description">
         <div className="description-content">
           <p className="description-eyebrow">{t('outlines.highlightEyebrow')}</p>
-          <p className="description-text">{t('outlines.descriptionText', 'Một chút Bts của sự kiện...')}</p>
-
           <div className="description-services">
-            <h3>{t('about.servicesTitle')}</h3>
             <div className="service-columns">
               <ul>
-                <li>Product Design</li>
-                <li>User Interface</li>
-                <li>User Experience</li>
-                <li>Brand Identity</li>
-                <li>Interaction Design</li>
-              </ul>
-              <ul>
-                <li>WordPress Development</li>
-                <li>Web Development</li>
-                <li>Shopify Development</li>
+                <li>{t('outlines.liText1')}</li>
+                <li>{t('outlines.liText2')}</li>
+                <li>{t('outlines.liText3')}</li>
+                <li>{t('outlines.liText4')}</li>
+                <li>{t('outlines.liText5')}</li>
+                <li>{t('outlines.liText6')}</li>
+                <li>{t('outlines.liText7')}</li>
               </ul>
             </div>
           </div>
@@ -220,22 +214,17 @@ function Outlines() {
       <div className="feature-category">
         <div className="feature-category-logo" aria-label="TP Media logo" />
         <div className="sologan-block">
-          <h2 color="white">Gen Z Việt Nam - Chất Việt, Tầm quốc tế</h2>
+          <h2 color="white">{t('outlines.genZtitle')}</h2>
         </div>
         <div className="list-feature-category">
           <span>
-            Gen Z Việt Nam: Khẳng định ngay đội ngũ là những người trẻ đầy nhiệt
-            huyết, nắm bắt xu hướng nhanh nhạy và dám nghĩ dám làm. cho các đối
-            tác tại Đài Loan hay các đối tác đến từ việt nam thấy rằng quy trình
-            làm việc của team rất bài bản, từ khâu lên kịch bản, chạy hiện
-            trường cho đến sản xuất hình ảnh, video đều đạt chuẩn chuyên nghiệp
-            khắt khe nhất.
+            {t('outlines.genZcontent')}
           </span>
         </div>
       </div>
       <div className="List-Achievements" id="achievements">
         <div className="list-achievements__header">
-          <h2>CÁC THÀNH TÍCH NỔI BẬT</h2>
+          <h2>{t('outlines.achiment1')}</h2>
         </div>
 
         <div className="list-achievements__grid">
@@ -249,7 +238,12 @@ function Outlines() {
                 <img src={achievement.image} alt={achievement.title} />
               </div>
               <div className="achievement-item__content">
-                <p>{achievement.description}</p>
+                <p 
+                  className={`achievement-description ${expandedAchievements[index] ? 'expanded' : 'truncated'}`}
+                  onClick={() => toggleAchievementExpand(index)}
+                >
+                  {achievement.description}
+                </p>
               </div>
             </article>
           ))}

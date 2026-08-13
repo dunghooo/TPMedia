@@ -58,14 +58,25 @@
     "letsTalk": "Hãy nói chuyện"
   },
   "outlines": {
-    "highlightEyebrow": "DỰ ÁN NỔI BẬT",
+    "highlightEyebrow": "Các Dịch Vụ Của Chúng Tôi / Lĩnh Vực Hoạt Động Của TP",
     "viewAll": "Xem tất cả dự án",
     "featuredProjects": "CÁC DỰ ÁN NỔI BẬT",
     "achievements": "CÁC THÀNH TÍCH NỔI BẬT"
   ,
-  "highlightText": "ĐIỂM NỔI BẬT HOẶC CÂU",
-  "highlightSub": "CHUYÊN NGÀNH",
-  "descriptionText": "Một chút Bts của sự kiện ngày 27 vừa rồi , cả Team chạy hồng hộc từ ngày 26 đến hôm nay mới chính thức kết thúc dự án . Cảm ơn mọi người từ những bạn làm việc Remote ở Việt Nam hay những bạn làm Offline tại sự kiện đã cống hiến hết mình cho Team . Một lần nữa cảm ơn mọi người đã đi với TP Media hết một dự án dài như vậy ."
+  "projectListTitle" : "CÁC DỰ ÁN MÀ CHÚNG TÔI THỰC HIỆN",
+  "highlightText": "GEN Z VIỆT NAM - CHẤT VIỆT, TẦM QUỐC TẾ",
+  "highlightSub": "Đối tác sự kiện số 1 Đài Loan",
+  "descriptionText": "Một chút Bts của sự kiện ngày 27 vừa rồi , cả Team chạy hồng hộc từ ngày 26 đến hôm nay mới chính thức kết thúc dự án . Cảm ơn mọi người từ những bạn làm việc Remote ở Việt Nam hay những bạn làm Offline tại sự kiện đã cống hiến hết mình cho Team . Một lần nữa cảm ơn mọi người đã đi với TP Media hết một dự án dài như vậy .",
+  "liText1": "Tư vấn Thiết kế & Dàn dựng Sự kiện.",
+  "liText2": "Lên kế hoạch & Tổ chức Sự kiện Quy mô lớn.",
+  "liText3": "Giải pháp Livestream Hội nghị Chuyên nghiệp.",
+  "liText4": "Giải pháp Âm thanh, Hình ảnh & Ánh sáng (Hệ thống AV chuyên nghiệp).",
+  "liText5": "Quay phim, Chụp ảnh & Cung cấp Nhân sự Sự kiện.",
+  "liText6": "Chiến lược Marketing Xuyên biên giới (Đài Loan - Việt Nam).",
+  "liText7": "Sản xuất Nội dung Đa phương tiện (TVC, MV, KV...).",
+  "genZtitle": "Gen Z Việt Nam - Chất Việt, Tầm quốc tế",
+  "genZcontent": "Gen Z Việt Nam: Khẳng định ngay đội ngũ là những người trẻ đầy nhiệt huyết, nắm bắt xu hướng nhanh nhạy và dám nghĩ dám làm. cho các đối tác tại Đài Loan hay các đối tác đến từ việt nam thấy rằng quy trình làm việc của team rất bài bản, từ khâu lên kịch bản, chạy hiện trường cho đến sản xuất hình ảnh, video đều đạt chuẩn chuyên nghiệp khắt khe nhất.",
+  "achiment1": "CÁC THÀNH TÍCH NỔI BẬT"
   },
   "projectDetail": {
     "tagline": "Event · Marketing · Visual Design · Video Film",

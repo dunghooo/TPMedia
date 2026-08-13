@@ -12,12 +12,41 @@ import MemberCard from "./components/MemberCard/membercard";
 import ContactUs from "./components/ContactUs/contactUs";
 import NotFound from "./components/NotFound/notfound";
 import About from "./components/About/about";
+import Login from "./components/login/login";
+import Register from "./components/register/register";
+import Admin from "./components/Admin/admin";
+import AddProject from "./components/Admin/ProjectDetailAD/addProjectDetailAD";
+import UpdateProject from "./components/Admin/ProjectDetailAD/UpdateProjectAD";
 
 function App() {
   return (
     <>
       <Nav />
       <Routes>
+        <Route
+          path="/admin"
+          element={
+            <>
+              <Admin />
+            </>
+          }
+        />
+        <Route
+          path="/admin/addProject"
+          element={
+            <>
+              <AddProject />
+            </>
+          }
+        />
+        <Route
+          path="/admin/UpdateProjectAD/:id"
+          element={
+            <>
+              <UpdateProject />
+            </>
+          }
+        />
         <Route
           path="/"
           element={
@@ -32,7 +61,6 @@ function App() {
           path="/projects"
           element={
             <>
-              <NavList />
               <ListProject />
               <Footer />
             </>
@@ -75,6 +103,22 @@ function App() {
               <NavList />
               <About />
               <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/Login"
+          element={
+            <>
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/Register"
+          element={
+            <>
+              <Register />
             </>
           }
         />

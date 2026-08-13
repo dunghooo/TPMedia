@@ -13,12 +13,6 @@ function Footer() {
   return (
     <>
       <div className="footer-section">
-        <div className="footer-nav-row">
-          <span>{t('footer.project')}</span>
-          <span>{t('footer.about')}</span>
-          <span>{t('footer.member')}</span>
-          <span>{t('footer.contact')}</span>
-        </div>
         <div className="footer-card">
           <div className="footer-card__col footer-logo-col">
             <div className="footer-logo-box">

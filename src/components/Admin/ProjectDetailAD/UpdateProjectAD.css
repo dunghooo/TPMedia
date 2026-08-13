@@ -1,0 +1,477 @@
+.edit-project-page {
+  min-height: 100vh;
+  padding: 30px;
+  background: #f5f6fa;
+}
+
+.edit-project-header {
+  max-width: 1200px;
+  margin: 0 auto 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-project-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #222;
+}
+
+.edit-project-header p {
+  margin: 7px 0 0;
+  color: #777;
+}
+
+.back-button {
+  padding: 10px 18px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+}
+
+.edit-project-form {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-card h2 {
+  color: #222;
+  margin: 0 0 22px;
+  font-size: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+}
+
+.required {
+  color: red;
+  margin-left: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border: 1px solid #ddd;
+  border-radius: 7px;
+
+  outline: none;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #222;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.description-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.featured-box {
+  margin-top: 20px;
+}
+
+.featured-box label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+/* =========================
+   THUMBNAIL
+========================= */
+
+.thumbnail-section {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.thumbnail-item {
+  width: 260px;
+}
+
+.thumbnail-item img {
+  width: 260px;
+  height: 160px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+}
+
+.thumbnail-item span {
+  display: block;
+  margin-top: 8px;
+
+  color: #777;
+  font-size: 13px;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.remove-image {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #e53935;
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.upload-thumbnail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upload-thumbnail input {
+  display: none;
+}
+
+.upload-thumbnail label {
+  display: inline-block;
+
+  padding: 12px 18px;
+
+  background: #f0f1f3;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.upload-thumbnail p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #777;
+}
+
+/* =========================
+   OLD GALLERY
+========================= */
+
+.gallery-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(8, 1fr);
+
+  gap: 18px;
+}
+
+.gallery-item {
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  padding: 10px;
+
+  background: #fafafa;
+}
+
+.gallery-image {
+  position: relative;
+}
+
+.gallery-image img {
+  width: 100%;
+  height: 170px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+}
+
+.remove-gallery {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #e53935;
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.gallery-caption {
+  padding: 8px 2px;
+}
+
+.gallery-caption p {
+  margin: 0;
+
+  color: #666;
+
+  font-size: 13px;
+}
+
+.empty-gallery {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #888;
+
+  background: #fafafa;
+
+  border-radius: 8px;
+}
+
+/* =========================
+   NEW GALLERY
+========================= */
+
+.gallery-upload-area {
+  margin-bottom: 20px;
+}
+
+.gallery-upload-area input {
+  display: none;
+}
+
+.gallery-upload-area label {
+  display: inline-block;
+
+  padding: 12px 18px;
+
+  border-radius: 8px;
+
+  background: #f0f1f3;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.new-gallery-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 18px;
+}
+
+.new-gallery-item {
+  padding: 10px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  background: #fafafa;
+}
+
+.new-gallery-image {
+  position: relative;
+
+  margin-bottom: 10px;
+}
+
+.new-gallery-image img {
+  width: 100%;
+  height: 170px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+}
+
+.new-gallery-image button {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #e53935;
+
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.new-gallery-item input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 9px;
+
+  margin-bottom: 8px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  padding-bottom: 30px;
+}
+
+.cancel-button,
+.save-button {
+  padding: 12px 22px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.cancel-button {
+  background: #e9e9e9;
+}
+
+.save-button {
+  background: #222;
+  color: white;
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+  text-align: center;
+
+  padding: 100px;
+
+  font-size: 18px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .form-grid,
+  .description-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid,
+  .new-gallery-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .edit-project-page {
+    padding: 15px;
+  }
+
+  .edit-project-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 15px;
+  }
+
+  .gallery-grid,
+  .new-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

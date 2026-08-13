@@ -60,14 +60,16 @@ function Nav() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  if (location.pathname === "/projects") return null;
   if (location.pathname === "/projectdetail") return null;
   if (location.pathname === "/about") return null;
   if (location.pathname === "/memberCards") return null;
   if (location.pathname === "/contactUs") return null;
   if (location.pathname === "/*") return null;
-
+  if (location.pathname === "/login") return null;
+  if (location.pathname === "/register") return null;
+  if (location.pathname === "/admin") return null;
+  if (location.pathname === "/admin/addProject") return null;
+  if (location.pathname.startsWith("/admin/UpdateProjectAD")) return null;
   return (
     <>
       <div className="header-container">

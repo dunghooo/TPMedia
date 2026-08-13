@@ -1,5 +1,6 @@
 import "./notfound.css";
 import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
 
 function NotFound() {
   const { t } = useTranslation();
@@ -9,7 +10,7 @@ function NotFound() {
         <h1>{t('notfound.title')}</h1>
         <h2>{t('notfound.heading')}</h2>
         <p>{t('notfound.message')}</p>
-        <a href="/" className="notfound-button">{t('notfound.back')}</a>
+        <Link to ="/" className="notfound-button">{t('notfound.back')}</Link>
       </div>
     </div>
   );

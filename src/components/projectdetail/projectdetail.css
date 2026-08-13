@@ -310,4 +310,20 @@
   .right-visual {
     gap: 0.75rem;
   }
+
+  .slider-card {
+    min-height: 220px;
+  }
+
+  .slider-image {
+    min-height: 70px;
+  }
+
+  .slider-copy {
+    padding: 0.75rem 0.75rem 0.9rem;
+  }
+
+  .slider-card h4 {
+    font-size: 0.9rem;
+  }
 }

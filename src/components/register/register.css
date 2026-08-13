@@ -1,0 +1,288 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.register-page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #667eea 0%,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #764ba2 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #141e30,
+            #243b55
+        );
+}
+
+/* Register Card */
+.register-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 45px 40px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35);
+
+    color: white;
+}
+
+/* Header */
+.register-header {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.register-header h1 {
+    margin: 0 0 10px;
+
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.register-header p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 15px;
+}
+
+/* Input */
+.input-group {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 58px;
+
+    margin-bottom: 18px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 14px;
+
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    border-color: white;
+
+    background: rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.input-group img {
+    width: 22px;
+    height: 22px;
+
+    object-fit: contain;
+
+    margin-left: 18px;
+
+    opacity: 0.8;
+}
+
+.input-group input {
+    flex: 1;
+
+    height: 100%;
+
+    padding: 0 15px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* Show password */
+.show-password {
+    margin-right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.show-password:hover {
+    color: white;
+}
+
+/* Terms */
+.terms {
+    margin: 5px 0 25px;
+
+    font-size: 13px;
+
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.terms label {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    line-height: 1.5;
+}
+
+.terms input {
+    width: 15px;
+    height: 15px;
+
+    margin-top: 2px;
+
+    cursor: pointer;
+}
+
+.terms a {
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 500;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* Register Button */
+.register-button {
+    width: 100%;
+    height: 55px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(118, 75, 162, 0.35);
+
+    transition: all 0.3s ease;
+}
+
+.register-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(118, 75, 162, 0.5);
+}
+
+.register-button:active {
+    transform: translateY(0);
+}
+
+/* Login Link */
+.login-link {
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.login-link a {
+    margin-left: 5px;
+
+    color: white;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+
+    .register-page {
+        padding: 15px;
+    }
+
+    .register-card {
+        padding: 35px 25px;
+
+        border-radius: 20px;
+    }
+
+    .register-header h1 {
+        font-size: 28px;
+    }
+
+    .input-group {
+        height: 54px;
+    }
+}
+

@@ -1,82 +1,86 @@
 {
   "nav": {
-    "projects": "项目",
+    "projects": "参考文献",
     "about": "关于我们",
     "members": "成员",
     "contact": "联系我们",
-    "code_vn": "VN",
-    "code_zh": "CN",
+    "code_vn": "视觉小说",
+    "code_zh": "加拿大国家铁路",
     "blog": "博客",
-    "careers": "招聘"
+    "careers": "职业生涯"
   },
   "banner": {
-    "title": "打造引人注目的数位故事",
-    "subtitle": "为现代团队设计的创意制作、品牌和媒体活动。",
+    "title": "打造引人注目的数字故事",
+    "subtitle": "为现代团队设计的创意制作、品牌塑造和媒体活动。",
     "viewProjects": "查看项目",
     "contactUs": "联系我们"
   },
   "about": {
-    "title": "关于 TP MEDIA",
-    "description": "我们是一家致力于为客户提供最佳服务的公司。我们的团队专注于创造性、可靠性和现代设计的数字体验。",
-    "servicesTitle": "我们提供的服务",
-    "serviceList": [
-      "产品设计",
-      "用户界面",
-      "用户体验",
-      "品牌识别",
-      "交互设计"
-    ]
+    "title": "关于美国TP媒体",
+    "description": "我们是一家创新的服务公司，致力于打造数字体验，注重创造力、可靠性和现代设计。",
+    "servicesTitle": "我参与过的项目",
+    "serviceList": ["产品设计", "用户界面", "用户体验", "品牌识别", "交互设计"]
   },
   "contact": {
     "label": "联系我们",
-    "heading": "让我们处理您的问题",
-    "officeOnline": "线上办公室 :",
+    "heading": "让我们来处理你的问题",
+    "officeOnline": "在线办公室：",
     "submit": "提交"
   },
-  "contact.formName": "姓名",
-  "contact.formEmail": "邮箱地址",
+  "contact.formName": "名称",
+  "contact.formEmail": "电子邮件地址",
   "contact.formPhone": "电话号码",
-  "contact.formMessage": "留言",
+  "contact.formMessage": "信息",
   "footer": {
-    "project": "项目",
+    "project": "参考文献",
     "about": "关于我们",
     "member": "成员",
     "contact": "联系我们",
     "contact_us": "联系我们",
-    "info_email": "邮箱信息",
-    "info_phone": "电话信息",
+    "info_email": "GMAIL信息",
+    "info_phone": "SDT信息",
     "address": "地址信息",
-    "tax": "税务信息",
-    "copyright": "©2023 Webestica 版权所有"
+    "tax": "税码信息",
+    "copyright": "©2023年Webestica 保留所有权利"
   },
   "member": {
     "intro": "我是",
-    "name": "TRẦN HOÀNG",
-    "title": "PHONG",
-    "company": "FOUNDERS TP MEDIA",
-    "greeting": "你好！我是一个喜欢学习新事物并热爱技术的越南年轻摄像师...",
-    "letsTalk": "让我们聊聊"
+    "name": "陈黄",
+    "title": "房间",
+    "company": "创始人 TP 传媒",
+    "greeting": "你好！我是个年轻的越南摄像师......",
+    "letsTalk": "我们聊聊吧"
   },
   "outlines": {
-    "highlightEyebrow": "精选项目",
+    "highlightEyebrow": "我們的服務/業務範圍",
     "viewAll": "查看所有项目",
-    "featuredProjects": "精选项目",
-    "achievements": "精彩成就"
-  ,
-  "highlightText": "亮点或标语",
-  "highlightSub": "专业领域",
-  "descriptionText": "关于最近活动的一些幕后花絮，团队从准备到收尾的努力与付出，感谢所有贡献者。"
+    "featuredProjects": "傑出項目",
+    "achievements": "杰出成就",
+    "highlightText": "越南Z世代－越南品質，國際視野",
+    "highlightSub": "台灣排名第一的活動夥伴",
+    "descriptionText": "27日活动的一小段内容，整个团队从26日一直跑到今天，正式结束了项目。感谢所有在越南远程工作或活动中线下工作的朋友们，全心投入团队。再次感谢大家选择TP Media完成这么长的项目。",
+    "liText1": "活動設計與製作諮詢。",
+    "liText2": "大型活動的規劃與組織。",
+    "liText3": "專業會議直播解決方案。",
+    "liText4": "音訊、視訊和照明解決方案（專業AV系統）。",
+    "liText5": "活動攝影、攝影及人員配備服務。",
+    "liText6": "跨境行銷策略（台灣-越南）。",
+    "liText7": "多媒體內容製作（電視廣告、音樂錄影帶、DVD 等）。",
+    "genZtitle": "Z世代越南－越南品質，國際視野",
+  "genZcontent": "Z世代越南：我們立即向合作夥伴展示了我們團隊由充滿熱情、能夠快速掌握潮流並敢於突破常規的年輕人組成。我們向台灣和越南的合作夥伴展示了我們系統化的工作流程，從劇本創作、實地拍攝到影像和影片製作，所有環節都符合最嚴格的專業標準。",
+    "achiment1": "傑出成就",
+    "projectListTitle" : "我們已完成的項目"
   },
   "projectDetail": {
-    "tagline": "活动 · 营销 · 视觉设计 · 视频",
-    "shortDescription": "项目简短描述...",
+    "tagline": "事件·市场营销·视觉设计·视频电影",
+    "shortDescription": "项目简要介绍......",
     "related": "其他项目",
-    "statsTitle": "项目带来的成果"
+    "statsTitle": "项目成就"
   },
   "notfound": {
     "title": "404",
-    "heading": "页面未找到",
-    "message": "您正在查找的页面不存在或已被移动",
-    "back": "返回首页"
+    "heading": "页面不存在",
+    "message": "你要找的页面不存在或已被移动",
+    "back": "回到家"
   }
 }

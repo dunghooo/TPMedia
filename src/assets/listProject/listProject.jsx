@@ -42,7 +42,7 @@ function ListProject() {
     <>
       <div className="ProjectList">
         <div className="project-list__hero">
-          <h2>{t('outlines.featuredProjects')}</h2>
+          <h2>{t('outlines.projectListTitle')}</h2>
         </div>
       </div>
       <div className="project-list__grid">
