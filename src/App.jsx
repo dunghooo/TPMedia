@@ -17,6 +17,8 @@ import Register from "./components/register/register";
 import Admin from "./components/Admin/admin";
 import AddProject from "./components/Admin/ProjectDetailAD/addProjectDetailAD";
 import UpdateProject from "./components/Admin/ProjectDetailAD/UpdateProjectAD";
+import AddMember from "./components/Admin/MemberDetailAD/AddMemberAD";
+import EditMemberAD from "./components/Admin/MemberDetailAD/EditMemberAD";
 
 function App() {
   return (
@@ -47,6 +49,9 @@ function App() {
             </>
           }
         />
+
+        <Route path="/admin/AddMember" element={<AddMember />} />
+        <Route path="/admin/EditMemberAD/:id" element={<EditMemberAD />} />
         <Route
           path="/"
           element={

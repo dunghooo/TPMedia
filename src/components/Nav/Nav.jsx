@@ -70,6 +70,8 @@ function Nav() {
   if (location.pathname === "/admin") return null;
   if (location.pathname === "/admin/addProject") return null;
   if (location.pathname.startsWith("/admin/UpdateProjectAD")) return null;
+  if (location.pathname === "/admin/addMember") return null;
+  if (location.pathname.startsWith("/admin/EditMemberAD")) return null;
   return (
     <>
       <div className="header-container">

@@ -204,7 +204,7 @@ function AddProject() {
         <button
           type="button"
           className="back-button"
-          onClick={() => navigate("/admin/projects")}
+          onClick={() => navigate("/admin")}
         >
           ← Quay lại
         </button>

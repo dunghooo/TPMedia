@@ -3,12 +3,22 @@ import "./admin.css";
 import { Link } from "react-router-dom";
 import { getAllProjects } from "../api/projectApi";
 import { deleteProject } from "../api/projectApi";
+import Pagination from "../page/Pagination";
+import { getAllMembers, deleteMember } from "../api/memberApi";
 
 function Admin() {
   const [activeMenu, setActiveMenu] = useState("employees");
   const [projects, setProjects] = useState([]);
   const [loadingProjects, setLoadingProjects] = useState(false);
   const [errorProjects, setErrorProjects] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
+
+  const totalPages = Math.ceil(projects.length / pageSize);
+
+  const startIndex = (currentPage - 1) * pageSize;
+
+  const currentProjects = projects.slice(startIndex, startIndex + pageSize);
 
   useEffect(() => {
     if (activeMenu !== "projects") return;
@@ -53,8 +63,15 @@ function Admin() {
     try {
       await deleteProject(id);
 
-      // Xóa khỏi danh sách hiện tại
-      setProjects((prev) => prev.filter((project) => project.id !== id));
+      const newProjects = projects.filter((project) => project.id !== id);
+
+      setProjects(newProjects);
+
+      const newTotalPages = Math.ceil(newProjects.length / pageSize);
+
+      if (currentPage > newTotalPages && newTotalPages > 0) {
+        setCurrentPage(newTotalPages);
+      }
 
       alert("Xóa dự án thành công.");
     } catch (error) {
@@ -64,30 +81,80 @@ function Admin() {
     }
   };
 
-  // Dữ liệu mẫu
-  const employees = [
-    {
-      id: 1,
-      name: "Nguyễn Văn An",
-      email: "nguyenvanan@gmail.com",
-      position: "Frontend Developer",
-      phone: "0901234567",
-    },
-    {
-      id: 2,
-      name: "Trần Thị Lan",
-      email: "tranthilan@gmail.com",
-      position: "Backend Developer",
-      phone: "0912345678",
-    },
-    {
-      id: 3,
-      name: "Lê Minh Đức",
-      email: "leminhduc@gmail.com",
-      position: "UI/UX Designer",
-      phone: "0923456789",
-    },
-  ];
+  const [members, setMembers] = useState([]);
+
+  const [loadingMembers, setLoadingMembers] = useState(false);
+
+  const [errorMembers, setErrorMembers] = useState("");
+
+  const [memberPage, setMemberPage] = useState(1);
+
+  // Để test: 3 nhân viên / trang
+  const memberPageSize = 3;
+
+  useEffect(() => {
+    if (activeMenu !== "employees") return;
+
+    let cancelled = false;
+
+    const fetchMembers = async () => {
+      try {
+        setLoadingMembers(true);
+        setErrorMembers("");
+
+        const data = await getAllMembers();
+
+        if (!cancelled) {
+          setMembers(data);
+        }
+      } catch (error) {
+        console.error("Lỗi lấy danh sách nhân viên:", error);
+
+        if (!cancelled) {
+          setErrorMembers("Không thể tải danh sách nhân viên.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingMembers(false);
+        }
+      }
+    };
+
+    fetchMembers();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeMenu]);
+
+  const memberTotalPages = Math.ceil(members.length / memberPageSize);
+
+  const memberStartIndex = (memberPage - 1) * memberPageSize;
+
+  const currentMembers = members.slice(
+    memberStartIndex,
+    memberStartIndex + memberPageSize,
+  );
+
+  const handleDeleteMember = async (id) => {
+    const confirmed = window.confirm(
+      "Bạn có chắc chắn muốn xóa nhân viên này không?",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await deleteMember(id);
+
+      setMembers((prev) => prev.filter((member) => member.id !== id));
+
+      alert("Xóa nhân viên thành công.");
+    } catch (error) {
+      console.error("Lỗi xóa nhân viên:", error.response?.data || error);
+
+      alert(error.response?.data?.message || "Xóa nhân viên thất bại.");
+    }
+  };
 
   const contacts = [
     {
@@ -211,57 +278,174 @@ function Admin() {
                   <p>Quản lý danh sách nhân viên</p>
                 </div>
 
-                <button className="add-button">+ Thêm nhân viên</button>
+                <Link to="/admin/addMember" className="add-button">
+                  + Thêm nhân viên
+                </Link>
               </div>
 
               <div className="table-wrapper">
-                <table>
+                <table className="member-table">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th className="member-id-column">ID</th>
+
+                      <th className="member-avatar-column">Ảnh đại diện</th>
+
                       <th>Họ và tên</th>
-                      <th>Email</th>
+
                       <th>Chức vụ</th>
-                      <th>Số điện thoại</th>
-                      <th>Thao tác</th>
+
+                      <th>Tiểu sử</th>
+
+                      <th>Behance</th>
+
+                      <th>Ảnh khác</th>
+
+                      <th className="member-action-column">Thao tác</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    {employees.map((employee) => (
-                      <tr key={employee.id}>
-                        <td>#{employee.id}</td>
-
-                        <td>
-                          <div className="user-info">
-                            <div className="table-avatar">
-                              {employee.name.charAt(0)}
-                            </div>
-
-                            <strong>{employee.name}</strong>
-                          </div>
-                        </td>
-
-                        <td>{employee.email}</td>
-
-                        <td>
-                          <span className="position">{employee.position}</span>
-                        </td>
-
-                        <td>{employee.phone}</td>
-
-                        <td>
-                          <div className="actions">
-                            <button className="edit-button">Sửa</button>
-
-                            <button className="delete-button">Xóa</button>
-                          </div>
+                    {loadingMembers ? (
+                      <tr>
+                        <td colSpan="8" className="member-message">
+                          Đang tải danh sách nhân viên...
                         </td>
                       </tr>
-                    ))}
+                    ) : errorMembers ? (
+                      <tr>
+                        <td colSpan="8" className="member-message error">
+                          {errorMembers}
+                        </td>
+                      </tr>
+                    ) : currentMembers.length === 0 ? (
+                      <tr>
+                        <td colSpan="8" className="member-message">
+                          Chưa có nhân viên nào.
+                        </td>
+                      </tr>
+                    ) : (
+                      currentMembers.map((member) => (
+                        <tr key={member.id}>
+                          {/* ID */}
+                          <td>
+                            <span className="member-id">#{member.id}</span>
+                          </td>
+
+                          {/* AVATAR */}
+                          <td>
+                            <div className="member-avatar">
+                              {member.avatarUrl ? (
+                                <img
+                                  src={member.avatarUrl}
+                                  alt={member.fullNameVi}
+                                />
+                              ) : (
+                                <span>
+                                  {member.fullNameVi?.charAt(0)?.toUpperCase()}
+                                </span>
+                              )}
+                            </div>
+                          </td>
+
+                          {/* TÊN */}
+                          <td>
+                            <div className="member-name">
+                              <strong>{member.fullNameVi}</strong>
+
+                              {member.fullNameZh && (
+                                <small>{member.fullNameZh}</small>
+                              )}
+                            </div>
+                          </td>
+
+                          {/* CHỨC VỤ */}
+                          <td>
+                            <span className="position">{member.roleVi}</span>
+                          </td>
+
+                          {/* BIO */}
+                          <td>
+                            <div
+                              className="member-bio"
+                              title={member.bioContentVi}
+                            >
+                              {member.bioContentVi || "Chưa có tiểu sử"}
+                            </div>
+                          </td>
+
+                          {/* BEHANCE */}
+                          <td>
+                            {member.behanceLink ? (
+                              <a
+                                href={member.behanceLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="behance-link"
+                              >
+                                Xem Behance
+                              </a>
+                            ) : (
+                              <span className="no-data">Chưa có</span>
+                            )}
+                          </td>
+
+                          {/* CÁC ẢNH KHÁC */}
+                          <td>
+                            <div className="member-gallery">
+                              {member.images && member.images.length > 0 ? (
+                                member.images.map((image) => (
+                                  <div
+                                    className="member-gallery-image"
+                                    key={image.id}
+                                  >
+                                    <img
+                                      src={image.imageUrl}
+                                      alt={`Ảnh ${member.fullNameVi}`}
+                                    />
+                                  </div>
+                                ))
+                              ) : (
+                                <span className="no-data">Không có ảnh</span>
+                              )}
+                            </div>
+                          </td>
+
+                          {/* THAO TÁC */}
+                          <td>
+                            <div className="actions">
+                              <Link
+                                to={`/admin/EditMemberAD/${member.id}`}
+                                className="edit-button"
+                                title="Sửa"
+                              >
+                                ✏️
+                              </Link>
+
+                              <button
+                                type="button"
+                                className="delete-button"
+                                title="Xóa"
+                                onClick={() => handleDeleteMember(member.id)}
+                              >
+                                🗑️
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>
+
+              {/* PAGINATION */}
+
+              <Pagination
+                currentPage={memberPage}
+                totalPages={memberTotalPages}
+                onPageChange={setMemberPage}
+              />
             </div>
           )}
 
@@ -285,11 +469,17 @@ function Admin() {
                   <thead>
                     <tr>
                       <th className="project-id-column">Ảnh</th>
+
                       <th className="project-image-column">ID</th>
+
                       <th>Tên dự án</th>
+
                       <th>Khách hàng</th>
+
                       <th>Trạng thái</th>
+
                       <th>Ngày tạo</th>
+
                       <th>Thao tác</th>
                     </tr>
                   </thead>
@@ -297,7 +487,12 @@ function Admin() {
                   <tbody>
                     {loadingProjects ? (
                       <tr>
-                        <td colSpan="7" style={{ textAlign: "center" }}>
+                        <td
+                          colSpan="7"
+                          style={{
+                            textAlign: "center",
+                          }}
+                        >
                           Đang tải dữ liệu...
                         </td>
                       </tr>
@@ -305,19 +500,27 @@ function Admin() {
                       <tr>
                         <td
                           colSpan="7"
-                          style={{ textAlign: "center", color: "red" }}
+                          style={{
+                            textAlign: "center",
+                            color: "red",
+                          }}
                         >
                           {errorProjects}
                         </td>
                       </tr>
-                    ) : projects.length === 0 ? (
+                    ) : currentProjects.length === 0 ? (
                       <tr>
-                        <td colSpan="7" style={{ textAlign: "center" }}>
+                        <td
+                          colSpan="7"
+                          style={{
+                            textAlign: "center",
+                          }}
+                        >
                           Chưa có dự án nào.
                         </td>
                       </tr>
                     ) : (
-                      projects.map((project) => (
+                      currentProjects.map((project) => (
                         <tr key={project.id}>
                           {/* ẢNH */}
                           <td>
@@ -361,7 +564,7 @@ function Admin() {
                             </span>
                           </td>
 
-                          {/* NGÀY */}
+                          {/* NĂM */}
                           <td>
                             <span className="project-date">
                               {project.completionYear}
@@ -377,6 +580,7 @@ function Admin() {
                               >
                                 ✏️
                               </Link>
+
                               <button
                                 type="button"
                                 className="delete-button"
@@ -393,6 +597,12 @@ function Admin() {
                   </tbody>
                 </table>
               </div>
+
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
             </div>
           )}
 

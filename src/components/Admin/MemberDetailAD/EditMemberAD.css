@@ -1,0 +1,715 @@
+/* =====================================================
+   EDIT MEMBER PAGE
+===================================================== */
+
+.edit-member-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 24px;
+
+  background: #f6f7fb;
+
+  font-family: "Poppins", sans-serif;
+
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.edit-member-header {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 18px;
+}
+
+.edit-member-back-button {
+  display: inline-flex;
+  align-items: center;
+
+  height: 36px;
+
+  padding: 0;
+
+  border: none;
+  background: none;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.edit-member-back-button:hover {
+  color: #4f46e5;
+}
+
+.edit-member-header > div {
+  margin-top: 4px;
+}
+
+.edit-member-header h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.edit-member-header p {
+  margin: 5px 0 0;
+
+  color: #9ca3af;
+
+  font-size: 13px;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.edit-member-form {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.edit-member-section {
+  width: 100%;
+
+  margin-bottom: 16px;
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 12px;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.edit-member-section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.edit-member-section-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #eef2ff;
+
+  font-size: 18px;
+}
+
+.edit-member-section-title h2 {
+  margin: 0 0 3px;
+
+  color: #1f2937;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.edit-member-section-title p {
+  margin: 0;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+/* =====================================================
+   FORM GRID
+===================================================== */
+
+.edit-member-form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.edit-member-full-width {
+  grid-column: 1 / -1;
+}
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.edit-member-form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.edit-member-form-group label {
+  color: #374151;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.edit-member-form-group label span {
+  margin-left: 3px;
+
+  color: #ef4444;
+}
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.edit-member-form-group input,
+.edit-member-form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dfe3ea;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #fff;
+
+  color: #1f2937;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  transition: all 0.2s ease;
+}
+
+.edit-member-form-group input {
+  height: 40px;
+
+  padding: 0 12px;
+}
+
+.edit-member-form-group textarea {
+  min-height: 100px;
+
+  padding: 10px 12px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+.edit-member-form-group input::placeholder,
+.edit-member-form-group textarea::placeholder {
+  color: #b5bac3;
+}
+
+.edit-member-form-group input:hover,
+.edit-member-form-group textarea:hover {
+  border-color: #c7cbd4;
+}
+
+.edit-member-form-group input:focus,
+.edit-member-form-group textarea:focus {
+  border-color: #6366f1;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.07);
+}
+
+/* =====================================================
+   AVATAR
+===================================================== */
+
+.edit-member-avatar-upload {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+}
+
+.edit-member-upload-box {
+  width: 180px;
+  height: 115px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  border: 1.5px dashed #cfd4dc;
+
+  border-radius: 9px;
+
+  background: #fafbfc;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.edit-member-upload-box:hover {
+  border-color: #6366f1;
+
+  background: #f8f7ff;
+}
+
+.edit-member-upload-box > div {
+  margin-bottom: 2px;
+
+  font-size: 25px;
+}
+
+.edit-member-upload-box strong {
+  color: #4b5563;
+
+  font-size: 11px;
+}
+
+.edit-member-upload-box span {
+  color: #9ca3af;
+
+  font-size: 9px;
+}
+
+/* =====================================================
+   AVATAR PREVIEW
+===================================================== */
+
+.edit-member-avatar-preview {
+  position: relative;
+
+  width: 180px;
+  height: 115px;
+
+  overflow: hidden;
+
+  border-radius: 9px;
+
+  border: 1px solid #e5e7eb;
+
+  background: #f3f4f6;
+}
+
+.edit-member-avatar-preview img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.edit-member-remove-image,
+.edit-member-change-avatar {
+  position: absolute;
+
+  top: 6px;
+  right: 6px;
+
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(17, 24, 39, 0.75);
+
+  color: white;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.edit-member-remove-image:hover,
+.edit-member-change-avatar:hover {
+  background: #ef4444;
+}
+
+.edit-member-note {
+  display: block;
+
+  margin-top: 9px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+.edit-member-gallery-grid {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+/* =====================================================
+   GALLERY ITEM
+===================================================== */
+
+.edit-member-gallery-item {
+  width: 115px;
+  height: 90px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 8px;
+
+  border: 1px solid #e5e7eb;
+
+  background: #f3f4f6;
+}
+
+.edit-member-gallery-item img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+/* =====================================================
+   GALLERY NUMBER
+===================================================== */
+
+.edit-member-gallery-number {
+  position: absolute;
+
+  left: 5px;
+  bottom: 5px;
+
+  padding: 3px 7px;
+
+  border-radius: 5px;
+
+  background: rgba(17, 24, 39, 0.75);
+
+  color: white;
+
+  font-size: 10px;
+}
+
+/* =====================================================
+   REMOVE GALLERY
+===================================================== */
+
+.edit-member-gallery-remove {
+  position: absolute;
+
+  top: 5px;
+  right: 5px;
+
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(17, 24, 39, 0.75);
+
+  color: white;
+
+  font-size: 14px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.edit-member-gallery-remove:hover {
+  background: #ef4444;
+}
+
+/* =====================================================
+   ADD GALLERY
+===================================================== */
+
+.edit-member-gallery-add {
+  width: 115px;
+  height: 90px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  box-sizing: border-box;
+
+  border: 1.5px dashed #cfd4dc;
+
+  border-radius: 8px;
+
+  background: #fafbfc;
+
+  color: #6366f1;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.edit-member-gallery-add:hover {
+  border-color: #6366f1;
+
+  background: #f8f7ff;
+}
+
+.edit-member-gallery-add span {
+  font-size: 22px;
+
+  line-height: 1;
+}
+
+.edit-member-gallery-add strong {
+  font-size: 10px;
+}
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.edit-member-empty {
+  padding: 30px;
+
+  text-align: center;
+
+  border: 1px dashed #d1d5db;
+
+  border-radius: 8px;
+
+  background: #fafafa;
+
+  color: #9ca3af;
+
+  font-size: 12px;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.edit-member-form-footer {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 5px 0 20px;
+}
+
+.edit-member-cancel-button,
+.edit-member-save-button {
+  height: 38px;
+
+  padding: 0 18px;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.edit-member-cancel-button {
+  border: 1px solid #dfe3ea;
+
+  background: white;
+
+  color: #6b7280;
+}
+
+.edit-member-cancel-button:hover {
+  background: #f9fafb;
+
+  color: #374151;
+}
+
+.edit-member-save-button {
+  border: none;
+
+  background: #4f46e5;
+
+  color: white;
+
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+}
+
+.edit-member-save-button:hover {
+  background: #4338ca;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.28);
+}
+
+.edit-member-save-button:disabled,
+.edit-member-cancel-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.edit-member-loading {
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f6f7fb;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+  .edit-member-page {
+    padding: 20px;
+  }
+
+  .edit-member-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-member-full-width {
+    grid-column: auto;
+  }
+
+  .edit-member-section {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .edit-member-page {
+    padding: 14px;
+  }
+
+  .edit-member-header {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .edit-member-section {
+    padding: 16px;
+  }
+
+  .edit-member-avatar-upload {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .edit-member-form-footer {
+    justify-content: stretch;
+  }
+
+  .edit-member-cancel-button,
+  .edit-member-save-button {
+    flex: 1;
+  }
+
+  .edit-member-gallery-item,
+  .edit-member-gallery-add {
+    width: 100px;
+    height: 80px;
+  }
+}
