@@ -1,3 +1,11 @@
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .project-detail {
   padding: 2rem 1rem 3rem;
   width: 90%;
@@ -142,9 +150,10 @@
 }
 
 .stats-block {
+  margin: 2rem 0;
   background: #ffffff;
   padding: 1.75rem;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
 }
 

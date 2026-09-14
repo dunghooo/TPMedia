@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import vietnamFlag from "../../assets/flag-for-flag-vietnam-svgrepo-com.svg";
 import chinaFlag from "../../assets/flag-for-flag-china-svgrepo-com.svg";
 import "./Nav.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,40 +12,49 @@ function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
-  const [selectedLang, setSelectedLang] = useState(i18n.language === 'zh' ? 'CN' : 'VN');
+  const selectedLang =
+    i18n.language === "zh" || i18n.language === "zh-TW" ? "CN" : "VN";
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest || !document) return;
-      if (!e.target.closest('.lang-dropdown')) {
+      if (!e.target.closest(".lang-dropdown")) {
         setIsOpen(false);
       }
-      if (!e.target.closest('.hamburger') && !e.target.closest('.navbar-center')) {
+      if (
+        !e.target.closest(".hamburger") &&
+        !e.target.closest(".navbar-center")
+      ) {
         setIsMenuOpen(false);
       }
     };
 
     const handleEsc = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setIsOpen(false);
         setIsMenuOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEsc);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEsc);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEsc);
     };
   }, []);
 
   const handleSelect = (code) => {
-    setSelectedLang(code);
     setIsOpen(false);
-    if (code === 'VN') i18n.changeLanguage('vi');
-    if (code === 'CN') i18n.changeLanguage('zh');
+
+    if (code === "VN") {
+      i18n.changeLanguage("vi");
+    }
+
+    if (code === "CN") {
+      i18n.changeLanguage("zh");
+    }
   };
 
   useEffect(() => {
@@ -60,7 +69,6 @@ function Nav() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  if (location.pathname === "/projectdetail") return null;
   if (location.pathname === "/about") return null;
   if (location.pathname === "/memberCards") return null;
   if (location.pathname === "/contactUs") return null;
@@ -72,6 +80,10 @@ function Nav() {
   if (location.pathname.startsWith("/admin/UpdateProjectAD")) return null;
   if (location.pathname === "/admin/addMember") return null;
   if (location.pathname.startsWith("/admin/EditMemberAD")) return null;
+  if (location.pathname === "/admin/addCategory") return null;
+  if (location.pathname.startsWith("/admin/editCategory")) return null;
+  if (location.pathname === "/projects") return null;
+  if (location.pathname.startsWith("/projectdetail/")) return null;
   return (
     <>
       <div className="header-container">
@@ -89,19 +101,29 @@ function Nav() {
             <span></span>
             <span></span>
           </button>
-          <div className={`navbar-center ${isMenuOpen ? 'navbar-center--open' : ''}`}>
-              <ul className="nav-links">
+          <div
+            className={`navbar-center ${isMenuOpen ? "navbar-center--open" : ""}`}
+          >
+            <ul className="nav-links">
               <li>
-                <Link to="/projects" onClick={() => setIsMenuOpen(false)}>{t('nav.projects')}</Link>
+                <Link to="/projects" onClick={() => setIsMenuOpen(false)}>
+                  {t("nav.projects")}
+                </Link>
               </li>
               <li>
-                <Link to="/about" onClick={() => setIsMenuOpen(false)}>{t('nav.about')}</Link>
+                <Link to="/about" onClick={() => setIsMenuOpen(false)}>
+                  {t("nav.about")}
+                </Link>
               </li>
               <li>
-                <Link to="/memberCards" onClick={() => setIsMenuOpen(false)}>{t('nav.members')}</Link>
+                <Link to="/memberCards" onClick={() => setIsMenuOpen(false)}>
+                  {t("nav.members")}
+                </Link>
               </li>
               <li>
-                <Link to="/contactUs" onClick={() => setIsMenuOpen(false)}>{t('nav.contact')}</Link>
+                <Link to="/contactUs" onClick={() => setIsMenuOpen(false)}>
+                  {t("nav.contact")}
+                </Link>
               </li>
             </ul>
           </div>

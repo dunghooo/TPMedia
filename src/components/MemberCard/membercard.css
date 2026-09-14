@@ -63,7 +63,7 @@
   margin: 0 auto;
   background: linear-gradient(135deg, #ffffff, #f3f3f3);
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 20px;
   padding: 20px;
   border-radius: 8px;
@@ -133,4 +133,55 @@
   text-align: center;
   font-size: 18px;
   color: #fff;
+}
+
+.Member-image {
+  width: 100%;
+}
+
+/* Ảnh lớn */
+.Member-main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Hàng ảnh nhỏ */
+.Member-image-slider {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Từng ảnh nhỏ */
+.Member-thumbnail {
+  width: 100px;
+  height: 75px;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: all 0.25s ease;
+}
+
+/* Ảnh nhỏ */
+.Member-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover */
+.Member-thumbnail:hover {
+  opacity: 1;
+}
+
+/* Ảnh đang được chọn */
+.Member-thumbnail.active {
+  opacity: 1;
+  outline: 3px solid #050505;
 }

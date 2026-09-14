@@ -1037,38 +1037,228 @@ td strong {
 }
 
 .member-action-column {
-    width: 100px;
+  width: 100px;
 }
 
 .member-table .actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .member-table .edit-button,
 .member-table .delete-button {
-    width: 34px;
-    height: 34px;
+  width: 34px;
+  height: 34px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 7px;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
 
-    background: #fff;
+  background: #fff;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .member-table .edit-button:hover {
-    background: #f3f4f6;
+  background: #f3f4f6;
 }
 
 .member-table .delete-button:hover {
-    background: #fef2f2;
+  background: #fef2f2;
+}
+
+/* =========================================
+   CATEGORY TABLE
+========================================= */
+
+.category-table {
+  width: 100%;
+  min-width: 750px;
+
+  table-layout: fixed;
+}
+
+.category-id-column {
+  width: 70px;
+}
+
+.category-action-column {
+  width: 150px;
+}
+
+.category-table tbody tr {
+  height: 65px;
+}
+
+.category-table tbody td {
+  vertical-align: middle;
+}
+
+/* =========================
+   CATEGORY ID
+========================= */
+
+.category-id {
+  color: #9ca3af;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+/* =========================
+   CATEGORY NAME
+========================= */
+
+.category-name {
+  color: #111827;
+
+  font-size: 14px;
+}
+
+.category-name-zh {
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+/* =========================
+   SLUG
+========================= */
+
+.category-slug {
+  display: inline-block;
+
+  max-width: 220px;
+
+  padding: 5px 9px;
+
+  border-radius: 6px;
+
+  background: #f3f4f6;
+
+  color: #6b7280;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+/* =========================
+   ACTION
+========================= */
+
+.category-table .actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+.category-table .view-button,
+.category-table .edit-button,
+.category-table .delete-button {
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+/* XEM */
+
+.category-table .view-button {
+  border: 1px solid #e0e7ff;
+
+  background: #eef2ff;
+
+  color: #4f46e5;
+}
+
+.category-table .view-button:hover {
+  background: #e0e7ff;
+}
+
+/* SỬA */
+
+.category-table .edit-button {
+  border: 1px solid #dbeafe;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+}
+
+/* XÓA */
+
+.category-table .delete-button {
+  border: 1px solid #fee2e2;
+
+  background: #fef2f2;
+
+  color: #dc2626;
+}
+
+/* MESSAGE */
+
+.category-message {
+  padding: 35px !important;
+
+  text-align: center;
+
+  color: #6b7280;
+}
+
+.category-message.error {
+  color: #dc2626;
+}
+
+.status-read,
+.status-unread {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-read {
+  background: #e8f7ee;
+  color: #198754;
+}
+
+.status-unread {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.message {
+  max-width: 250px;
+  white-space: normal;
+  word-break: break-word;
 }

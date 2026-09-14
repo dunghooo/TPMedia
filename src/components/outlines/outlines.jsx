@@ -1,5 +1,6 @@
 import "./outlines.css";
-import { useTranslation } from 'react-i18next';
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import defaultProjectImage from "../../assets/hero.png";
@@ -8,9 +9,9 @@ import image2 from "../../assets/p2.jpg";
 import image3 from "../../assets/p3.jpg";
 import image4 from "../../assets/p4.jpg";
 import image5 from "../../assets/p1.jpg";
-import image6 from "../../assets/p5.jpg";
-import image7 from "../../assets/p7.jpg";
-import image8 from "../../assets/p8.jpg";
+// import image6 from "../../assets/p5.jpg";
+// import image7 from "../../assets/p7.jpg";
+// import image8 from "../../assets/p8.jpg";
 import logo1 from "../../assets/0122_LOGO_VNEX.png";
 import logo2 from "../../assets/H_T travel logo.png";
 import logo3 from "../../assets/hennessy-logo-png_seeklogo-400371.png";
@@ -22,29 +23,6 @@ import logo8 from "../../assets/LOGO-VSA-TW-2017.png";
 import acc1 from "../../assets/ac1 (1).jpg";
 import acc2 from "../../assets/ac1 (2).jpg";
 import acc3 from "../../assets/ac1 (3).jpg";
-
-const projects = [
-  {
-    title: "中華奧林匹克盃 2025 | 美業交流競技暨美饌藝術美學",
-    category: "HẠNG MỤC - CHỨC NĂNG",
-    image: image5,
-  },
-  {
-    title: "WORKSHOP REBORN | LESS IS MORE",
-    category: "HẠNG MỤC THI CÔNG",
-    image: image6,
-  },
-  {
-    title: "VIETNAMESE CULTURAL FESTIVAL 2026 - VCF NTHU: TÂM",
-    category: "HẠNG MỤC THI CÔNG",
-    image: image7,
-  },
-  {
-    title: "VIETNAM AIRLINE SPRING GALA DINNER",
-    category: "HẠNG MỤC - CHỨC NĂNG",
-    image: image8,
-  },
-];
 
 const achievements = [
   {
@@ -58,11 +36,54 @@ const achievements = [
   {
     image: acc3,
     description: "中華奧林匹克盃 2025 美業交流競技暨美饌藝術美學",
-  }
+  },
 ];
 
 function Outlines() {
-  const { t } = useTranslation();
+  const [projects, setProjects] = useState([]);
+
+  const [loadingProjects, setLoadingProjects] = useState(true);
+
+  const [errorProjects, setErrorProjects] = useState("");
+
+  const { t, i18n } = useTranslation();
+
+  const isZh = i18n.language === "zh";
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const fetchProjects = async () => {
+      try {
+        setLoadingProjects(true);
+        setErrorProjects("");
+
+        const response = await axios.get(
+          "https://localhost:7177/api/Project/GetAllProjects",
+        );
+
+        if (!cancelled) {
+          setProjects(Array.isArray(response.data) ? response.data : []);
+        }
+      } catch (error) {
+        console.error("Lỗi lấy danh sách dự án:", error);
+
+        if (!cancelled) {
+          setErrorProjects("Không thể tải danh sách dự án.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingProjects(false);
+        }
+      }
+    };
+
+    fetchProjects();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8];
 
   const logoTrackRef = useRef(null);
@@ -72,7 +93,7 @@ function Outlines() {
   // image-placeholder slider
   const slides = [image2, image3, image4, image5];
   const [descIndex, setDescIndex] = useState(0);
-  
+
   // achievement expand/collapse
   const [expandedAchievements, setExpandedAchievements] = useState({});
   useEffect(() => {
@@ -117,9 +138,9 @@ function Outlines() {
   }, [isPaused]);
 
   const toggleAchievementExpand = (index) => {
-    setExpandedAchievements(prev => ({
+    setExpandedAchievements((prev) => ({
       ...prev,
-      [index]: !prev[index]
+      [index]: !prev[index],
     }));
   };
 
@@ -133,8 +154,13 @@ function Outlines() {
             </span>
           </div>
           <div className="banner-content">
-            <h2>{t('outlines.highlightText', 'GEN Z VIỆT NAM - CHẤT VIỆT, TẦM QUỐC TẾ')}</h2>
-            <p>{t('outlines.highlightSub', 'Đối tác sự kiện số 1 Đài Loan')}</p>
+            <h2>
+              {t(
+                "outlines.highlightText",
+                "GEN Z VIỆT NAM - CHẤT VIỆT, TẦM QUỐC TẾ",
+              )}
+            </h2>
+            <p>{t("outlines.highlightSub", "Đối tác sự kiện số 1 Đài Loan")}</p>
           </div>
           <div className="decor">✦</div>
         </div>
@@ -155,17 +181,19 @@ function Outlines() {
       </div>
       <div className="Description">
         <div className="description-content">
-          <p className="description-eyebrow">{t('outlines.highlightEyebrow')}</p>
+          <p className="description-eyebrow">
+            {t("outlines.highlightEyebrow")}
+          </p>
           <div className="description-services">
             <div className="service-columns">
               <ul>
-                <li>{t('outlines.liText1')}</li>
-                <li>{t('outlines.liText2')}</li>
-                <li>{t('outlines.liText3')}</li>
-                <li>{t('outlines.liText4')}</li>
-                <li>{t('outlines.liText5')}</li>
-                <li>{t('outlines.liText6')}</li>
-                <li>{t('outlines.liText7')}</li>
+                <li>{t("outlines.liText1")}</li>
+                <li>{t("outlines.liText2")}</li>
+                <li>{t("outlines.liText3")}</li>
+                <li>{t("outlines.liText4")}</li>
+                <li>{t("outlines.liText5")}</li>
+                <li>{t("outlines.liText6")}</li>
+                <li>{t("outlines.liText7")}</li>
               </ul>
             </div>
           </div>
@@ -188,43 +216,64 @@ function Outlines() {
       </div>
       <div className="ListProject" id="projects">
         <div className="list-project__header">
-          <h2>{t('outlines.featuredProjects')}</h2>
+          <h2>{t("outlines.featuredProjects")}</h2>
+
           <Link to="/projects" className="view-all-link">
-            {t('outlines.viewAll')}
+            {t("outlines.viewAll")}
           </Link>
         </div>
 
         <div className="list-project__grid">
-          {projects.map((project, index) => (
-            <article className="project-item" key={`${project.title}-${index}`}>
-              <div className="project-item__image">
-                <img
-                  src={project.image || defaultProjectImage}
-                  alt={project.title}
-                />
-              </div>
-              <Link to={`/projectdetail`} className="project-item__title">
-                <h3>{project.title}</h3>
-              </Link>
-              <p>{project.category}</p>
-            </article>
-          ))}
+          {loadingProjects ? (
+            <p className="project-loading">Đang tải dự án...</p>
+          ) : errorProjects ? (
+            <p className="project-error">{errorProjects}</p>
+          ) : projects.length === 0 ? (
+            <p className="project-empty">Chưa có dự án nào.</p>
+          ) : (
+            projects.slice(0, 4).map((project) => {
+              return (
+                <article className="project-item" key={project.id}>
+                  {/* Ảnh */}
+                  <div className="project-item__image">
+                    <img
+                      src={project.thumbnailUrl || defaultProjectImage}
+                      alt={isZh ? project.titleZh : project.titleVi}
+                    />
+                  </div>
+
+                  {/* Tên dự án */}
+                  <Link
+                    to={`/projectdetail/${project.id}`}
+                    className="project-item__title"
+                  >
+                    <h3>{isZh ? project.titleZh : project.titleVi}</h3>
+                  </Link>
+
+                  {/* Caption Gallery */}
+                  <p>
+                    {isZh
+                      ? project.category?.nameZh || "暂无描述"
+                      : project.category?.nameVi || "Chưa có mô tả"}
+                  </p>
+                </article>
+              );
+            })
+          )}
         </div>
       </div>
       <div className="feature-category">
         <div className="feature-category-logo" aria-label="TP Media logo" />
         <div className="sologan-block">
-          <h2 color="white">{t('outlines.genZtitle')}</h2>
+          <h2 color="white">{t("outlines.genZtitle")}</h2>
         </div>
         <div className="list-feature-category">
-          <span>
-            {t('outlines.genZcontent')}
-          </span>
+          <span>{t("outlines.genZcontent")}</span>
         </div>
       </div>
       <div className="List-Achievements" id="achievements">
         <div className="list-achievements__header">
-          <h2>{t('outlines.achiment1')}</h2>
+          <h2>{t("outlines.achiment1")}</h2>
         </div>
 
         <div className="list-achievements__grid">
@@ -238,8 +287,8 @@ function Outlines() {
                 <img src={achievement.image} alt={achievement.title} />
               </div>
               <div className="achievement-item__content">
-                <p 
-                  className={`achievement-description ${expandedAchievements[index] ? 'expanded' : 'truncated'}`}
+                <p
+                  className={`achievement-description ${expandedAchievements[index] ? "expanded" : "truncated"}`}
                   onClick={() => toggleAchievementExpand(index)}
                 >
                   {achievement.description}

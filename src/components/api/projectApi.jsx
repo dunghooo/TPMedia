@@ -8,24 +8,24 @@ export const getAllProjects = async () => {
 };
 
 export const createProject = async (formData) => {
-  const response = await axios.post(
-    `${API_URL}/AddProject`,
-    formData
-  );
+  const response = await axios.post(`${API_URL}/AddProject`, formData);
 
   return response.data;
 };
 
 export const updateProject = async (id, formData) => {
-  const response = await axios.put(
-    `${API_URL}/UpdateProject/${id}`,
-    formData
-  );
+  const response = await axios.put(`${API_URL}/UpdateProject/${id}`, formData);
 
   return response.data;
 };
 
 export const deleteProject = async (id) => {
   const response = await axios.delete(`${API_URL}/DeleteProject/${id}`);
+  return response.data;
+};
+
+export const getProjectById = async (id) => {
+  const response = await axios.get(`${API_URL}/GetProjectById/${id}`);
+
   return response.data;
 };

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+
 import "./admin.css";
 import { Link } from "react-router-dom";
 import { getAllProjects } from "../api/projectApi";
 import { deleteProject } from "../api/projectApi";
 import Pagination from "../page/Pagination";
 import { getAllMembers, deleteMember } from "../api/memberApi";
+import { getAllCategories, deleteCategory } from "../api/categoryApi";
+import { getAllContacts, deleteContact } from "../api/contactApi";
 
 function Admin() {
   const [activeMenu, setActiveMenu] = useState("employees");
@@ -127,6 +130,90 @@ function Admin() {
     };
   }, [activeMenu]);
 
+  const [categories, setCategories] = useState([]);
+
+  const [loadingCategories, setLoadingCategories] = useState(false);
+
+  const [errorCategories, setErrorCategories] = useState("");
+
+  const [categoryPage, setCategoryPage] = useState(1);
+
+  const categoryPageSize = 3;
+
+  useEffect(() => {
+    if (activeMenu !== "categories") return;
+
+    let cancelled = false;
+
+    const fetchCategories = async () => {
+      try {
+        setLoadingCategories(true);
+        setErrorCategories("");
+
+        const data = await getAllCategories();
+
+        console.log("Categories:", data);
+
+        if (!cancelled) {
+          setCategories(data);
+        }
+      } catch (error) {
+        console.error("Lỗi lấy category:", error);
+
+        if (!cancelled) {
+          setErrorCategories("Không thể tải danh sách thể loại.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingCategories(false);
+        }
+      }
+    };
+
+    fetchCategories();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeMenu]);
+
+  const categoryTotalPages = Math.ceil(categories.length / categoryPageSize);
+
+  const categoryStartIndex = (categoryPage - 1) * categoryPageSize;
+
+  const currentCategories = categories.slice(
+    categoryStartIndex,
+    categoryStartIndex + categoryPageSize,
+  );
+
+  const handleDeleteCategory = async (id) => {
+    const confirmed = window.confirm(
+      "Bạn có chắc chắn muốn xóa thể loại này không?",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await deleteCategory(id);
+
+      const newCategories = categories.filter((category) => category.id !== id);
+
+      setCategories(newCategories);
+
+      const newTotalPages = Math.ceil(newCategories.length / categoryPageSize);
+
+      if (categoryPage > newTotalPages && newTotalPages > 0) {
+        setCategoryPage(newTotalPages);
+      }
+
+      alert("Xóa thể loại thành công.");
+    } catch (error) {
+      console.error("Lỗi xóa category:", error);
+
+      alert(error.response?.data?.message || "Xóa thể loại thất bại.");
+    }
+  };
+
   const memberTotalPages = Math.ceil(members.length / memberPageSize);
 
   const memberStartIndex = (memberPage - 1) * memberPageSize;
@@ -156,29 +243,81 @@ function Admin() {
     }
   };
 
-  const contacts = [
-    {
-      id: 1,
-      name: "Nguyễn Văn A",
-      email: "nguyenvana@gmail.com",
-      phone: "0901234567",
-      message: "Tôi muốn tìm hiểu thêm về dự án.",
-    },
-    {
-      id: 2,
-      name: "Trần Văn B",
-      email: "tranvanb@gmail.com",
-      phone: "0912345678",
-      message: "Xin tư vấn về dịch vụ.",
-    },
-    {
-      id: 3,
-      name: "Lê Thị C",
-      email: "lethic@gmail.com",
-      phone: "0923456789",
-      message: "Tôi muốn hợp tác với công ty.",
-    },
-  ];
+  const [contacts, setContacts] = useState([]);
+
+  const [loadingContacts, setLoadingContacts] = useState(false);
+
+  const [errorContacts, setErrorContacts] = useState("");
+
+  const [contactPage, setContactPage] = useState(1);
+
+  const contactPageSize = 5;
+
+  const contactTotalPages = Math.ceil(contacts.length / contactPageSize);
+
+  const contactStartIndex = (contactPage - 1) * contactPageSize;
+
+  const currentContacts = contacts.slice(
+    contactStartIndex,
+    contactStartIndex + contactPageSize,
+  );
+
+  useEffect(() => {
+    if (activeMenu !== "contacts") return;
+
+    let cancelled = false;
+
+    const fetchContacts = async () => {
+      try {
+        setLoadingContacts(true);
+        setErrorContacts("");
+
+        const data = await getAllContacts();
+
+        console.log("CONTACTS:", data);
+
+        if (!cancelled) {
+          setContacts(data);
+        }
+      } catch (error) {
+        console.error("Lỗi lấy danh sách liên hệ:", error);
+
+        if (!cancelled) {
+          setErrorContacts("Không thể tải danh sách liên hệ.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingContacts(false);
+        }
+      }
+    };
+
+    fetchContacts();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeMenu]);
+
+  const handleDeleteContact = async (id) => {
+    const confirmed = window.confirm(
+      "Bạn có chắc chắn muốn xóa liên lạc này không?",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await deleteContact(id);
+
+      setContacts((prev) => prev.filter((contact) => contact.id !== id));
+
+      alert("Xóa liên lạc thành công.");
+    } catch (error) {
+      console.error("Lỗi xóa liên lạc:", error.response?.data || error);
+
+      alert(error.response?.data?.message || "Xóa liên lạc thất bại.");
+    }
+  };
 
   const getTitle = () => {
     switch (activeMenu) {
@@ -196,6 +335,16 @@ function Admin() {
     }
   };
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+
+    return `${String(d.getDate()).padStart(2, "0")}/${String(
+      d.getMonth() + 1,
+    ).padStart(2, "0")}/${d.getFullYear()} ${String(d.getHours()).padStart(
+      2,
+      "0",
+    )}:${String(d.getMinutes()).padStart(2, "0")}`;
+  };
   return (
     <div className="admin-container">
       {/* SIDEBAR */}
@@ -225,6 +374,17 @@ function Admin() {
           >
             <span className="menu-icon">📁</span>
             <span>Dự án</span>
+          </button>
+
+          <button
+            className={
+              activeMenu === "categories" ? "menu-item active" : "menu-item"
+            }
+            onClick={() => setActiveMenu("categories")}
+          >
+            <span className="menu-icon">🏷️</span>
+
+            <span>Thể loại</span>
           </button>
 
           <button
@@ -606,9 +766,149 @@ function Admin() {
             </div>
           )}
 
+          {activeMenu === "categories" && (
+            <div className="content-card">
+              {/* =========================
+            HEADER
+        ========================= */}
+
+              <div className="table-header">
+                <div>
+                  <h2>Thể loại</h2>
+
+                  <p>Quản lý danh sách thể loại</p>
+                </div>
+
+                <Link to="/admin/addCategory" className="add-button">
+                  + Thêm thể loại
+                </Link>
+              </div>
+
+              {/* =========================
+            TABLE
+        ========================= */}
+
+              <div className="table-wrapper">
+                <table className="category-table">
+                  <thead>
+                    <tr>
+                      <th className="category-id-column">ID</th>
+
+                      <th>Tên tiếng Việt</th>
+
+                      <th>Tên tiếng Trung</th>
+
+                      <th>Slug</th>
+
+                      <th className="category-action-column">Thao tác</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {loadingCategories ? (
+                      <tr>
+                        <td colSpan="5" className="category-message">
+                          Đang tải danh sách thể loại...
+                        </td>
+                      </tr>
+                    ) : errorCategories ? (
+                      <tr>
+                        <td colSpan="5" className="category-message error">
+                          {errorCategories}
+                        </td>
+                      </tr>
+                    ) : currentCategories.length === 0 ? (
+                      <tr>
+                        <td colSpan="5" className="category-message">
+                          Chưa có thể loại nào.
+                        </td>
+                      </tr>
+                    ) : (
+                      currentCategories.map((category) => (
+                        <tr key={category.id}>
+                          {/* ID */}
+
+                          <td>
+                            <span className="category-id">#{category.id}</span>
+                          </td>
+
+                          {/* TÊN VI */}
+
+                          <td>
+                            <strong className="category-name">
+                              {category.nameVi}
+                            </strong>
+                          </td>
+
+                          {/* TÊN ZH */}
+
+                          <td>
+                            <span className="category-name-zh">
+                              {category.nameZh || "Chưa có"}
+                            </span>
+                          </td>
+
+                          {/* SLUG */}
+
+                          <td>
+                            <span className="category-slug">
+                              {category.slug}
+                            </span>
+                          </td>
+
+                          {/* THAO TÁC */}
+
+                          <td>
+                            <div className="actions">
+                              {/* XEM */}
+
+                              {/* SỬA */}
+
+                              <Link
+                                to={`/admin/editCategory/${category.id}`}
+                                className="edit-button"
+                                title="Sửa"
+                              >
+                                ✏️
+                              </Link>
+
+                              {/* XÓA */}
+
+                              <button
+                                type="button"
+                                className="delete-button"
+                                title="Xóa"
+                                onClick={() =>
+                                  handleDeleteCategory(category.id)
+                                }
+                              >
+                                🗑️
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* =========================
+            PAGINATION
+        ========================= */}
+
+              <Pagination
+                currentPage={categoryPage}
+                totalPages={categoryTotalPages}
+                onPageChange={setCategoryPage}
+              />
+            </div>
+          )}
+          {/* CONTACTS */}
           {/* CONTACTS */}
           {activeMenu === "contacts" && (
             <div className="content-card">
+              {/* HEADER */}
               <div className="table-header">
                 <div>
                   <h2>Thông tin liên hệ</h2>
@@ -617,42 +917,125 @@ function Admin() {
                 </div>
               </div>
 
-              <div className="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Họ và tên</th>
-                      <th>Email</th>
-                      <th>Số điện thoại</th>
-                      <th>Nội dung</th>
-                      <th>Thao tác</th>
-                    </tr>
-                  </thead>
+              {/* LOADING */}
+              {loadingContacts && (
+                <div className="loading">Đang tải danh sách liên hệ...</div>
+              )}
 
-                  <tbody>
-                    {contacts.map((contact) => (
-                      <tr key={contact.id}>
-                        <td>#{contact.id}</td>
+              {/* ERROR */}
+              {errorContacts && (
+                <div className="error-message">{errorContacts}</div>
+              )}
 
-                        <td>
-                          <strong>{contact.name}</strong>
-                        </td>
+              {/* TABLE */}
+              {!loadingContacts && !errorContacts && (
+                <>
+                  <div className="table-wrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Họ và tên</th>
+                          <th>Email</th>
+                          <th>Số điện thoại</th>
+                          <th>Dịch vụ</th>
+                          <th>Nội dung</th>
+                          <th>Ngày gửi</th>
+                          <th>Trạng thái</th>
+                          <th>Thao tác</th>
+                        </tr>
+                      </thead>
 
-                        <td>{contact.email}</td>
+                      <tbody>
+                        {currentContacts.length > 0 ? (
+                          currentContacts.map((contact) => (
+                            <tr key={contact.id}>
+                              {/* ID */}
+                              <td>#{contact.id}</td>
 
-                        <td>{contact.phone}</td>
+                              {/* HỌ TÊN */}
+                              <td>
+                                <strong>{contact.senderName || "—"}</strong>
+                              </td>
 
-                        <td className="message">{contact.message}</td>
+                              {/* EMAIL */}
+                              <td>{contact.senderEmail || "—"}</td>
 
-                        <td>
-                          <button className="delete-button">Xóa</button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                              {/* PHONE */}
+                              <td>{contact.senderPhone || "—"}</td>
+
+                              {/* SERVICE */}
+                              <td>{contact.serviceInterested || "—"}</td>
+
+                              {/* MESSAGE */}
+                              <td className="message">
+                                {contact.message || "—"}
+                              </td>
+
+                              {/* CREATED DATE */}
+                              <td>
+                                {contact.createdAt
+                                  ? formatDate(contact.createdAt)
+                                  : "—"}
+                              </td>
+
+                              {/* STATUS */}
+                              <td>
+                                <span
+                                  className={
+                                    contact.isRead
+                                      ? "status-read"
+                                      : "status-unread"
+                                  }
+                                >
+                                  {contact.isRead ? "Đã đọc" : "Chưa đọc"}
+                                </span>
+                              </td>
+
+                              {/* ACTION */}
+                              <td>
+                                <div className="actions">
+                                  <button
+                                    type="button"
+                                    className="delete-button"
+                                    title="Xóa"
+                                    onClick={() =>
+                                      handleDeleteContact(contact.id)
+                                    }
+                                  >
+                                    Xóa
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td
+                              colSpan="9"
+                              style={{
+                                textAlign: "center",
+                                padding: "30px",
+                              }}
+                            >
+                              Chưa có thông tin liên hệ
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* PAGINATION */}
+                  {contactTotalPages > 1 && (
+                    <Pagination
+                      currentPage={contactPage}
+                      totalPages={contactTotalPages}
+                      onPageChange={setContactPage}
+                    />
+                  )}
+                </>
+              )}
             </div>
           )}
         </section>

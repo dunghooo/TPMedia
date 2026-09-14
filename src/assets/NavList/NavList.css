@@ -59,3 +59,98 @@
     padding: 2rem 1.25rem;
   }
 }
+
+/* =========================
+   NavList Language
+========================= */
+
+.nl-lang-dropdown {
+  position: relative;
+  list-style: none;
+}
+
+.nl-lang-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  color: inherit;
+  padding: 8px 10px;
+  border-radius: 6px;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nl-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 14px;
+}
+
+.nl-flag img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.nl-code {
+  font-size: 13px;
+}
+
+.nl-caret {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.nl-dropdown {
+  position: absolute;
+
+  right: 0;
+  top: calc(100% + 8px);
+
+  background: white;
+  color: #111;
+
+  border-radius: 8px;
+  border: 1px solid #ddd;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+
+  list-style: none;
+  padding: 6px;
+
+  min-width: 100px;
+
+  z-index: 2000;
+}
+
+.nl-dropdown-item {
+  padding: 8px 10px;
+
+  cursor: pointer;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nl-dropdown-item:hover {
+  background: #f3f3f3;
+}
+
+.nl-dropdown-item.active {
+  background: #e9eefb;
+}
+
+.nl-code {
+  color: #000;
+}

@@ -19,6 +19,9 @@ import AddProject from "./components/Admin/ProjectDetailAD/addProjectDetailAD";
 import UpdateProject from "./components/Admin/ProjectDetailAD/UpdateProjectAD";
 import AddMember from "./components/Admin/MemberDetailAD/AddMemberAD";
 import EditMemberAD from "./components/Admin/MemberDetailAD/EditMemberAD";
+import AddCategoryAD from "./components/Admin/CategoryDetailAD/AddCategoryAD";
+
+import EditCategoryAD from "./components/Admin/CategoryDetailAD/EditCategoryAD";
 
 function App() {
   return (
@@ -62,17 +65,22 @@ function App() {
             </>
           }
         />
+
+        <Route path="/admin/addCategory" element={<AddCategoryAD />} />
+
+        <Route path="/admin/editCategory/:id" element={<EditCategoryAD />} />
         <Route
           path="/projects"
           element={
             <>
+              <NavList />
               <ListProject />
               <Footer />
             </>
           }
         />
         <Route
-          path="/projectdetail"
+           path="/projectdetail/:id"
           element={
             <>
               <NavList />

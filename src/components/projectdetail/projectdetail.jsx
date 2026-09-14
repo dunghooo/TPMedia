@@ -1,57 +1,117 @@
 import { useEffect, useState } from "react";
-import { useTranslation } from 'react-i18next';
+import { Link, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./projectdetail.css";
-import image6 from "../../assets/p5.jpg";
-import event1 from "../../assets/event1.jpg";
-import event2 from "../../assets/event2.jpg";
-import event3 from "../../assets/event3.jpg";
-import event4 from "../../assets/event4.jpg";
-import image5 from "../../assets/p1.jpg";
-import image7 from "../../assets/p7.jpg";
-import image8 from "../../assets/p8.jpg";
-import image9 from "../../assets/p9.jpg";
-import image10 from "../../assets/p10.jpg";
+
+import {
+  getProjectById,
+  getAllProjects,
+} from "../../components/api/projectApi";
 
 function ProjectDetail() {
-  const { t } = useTranslation();
-  const relatedProjects = [
-    {
-      title: "中華奧林匹克盃 2025 | 美業交流競技暨美饌藝術美學",
-      category: "Event · Visual Design",
-      image:
-        image5,
-    },
-    {
-      title: "VIETNAMESE CULTURAL FESTIVAL 2026 - VCF NTHU: TÂM",
-      category: "Branding · Photography",
-      image:
-        image7,
-    },
-    {
-      title: "VIETNAM AIRLINE SPRING GALA DINNER",
-      category: "Marketing · Motion",
-      image:
-        image8,
-    },
-    {
-      title: "29th 2025 APHCA Asia Pacific Beauty and Hairdressing Olympics International Competition",
-      category: "Video · Visual Direction",
-      image:
-        image9,
-    },
-    {
-      title: "League of Legends - LCP TP Media x MGN Viking Esports",
-      category: "Design · Production",
-      image:
-        image10,
-    }
-  ];
+  const { i18n } = useTranslation();
+  const { id } = useParams();
+
+  const [project, setProject] = useState(null);
+  const [relatedProjects, setRelatedProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const slidesToShow = 3;
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const isZh = i18n.language === "zh" || i18n.language === "zh-TW";
+
+  // =========================
+  // LẤY CHI TIẾT PROJECT
+  // =========================
+  useEffect(() => {
+    const fetchProjectDetail = async () => {
+      try {
+        setLoading(true);
+        setError("");
+
+        const data = await getProjectById(id);
+
+        console.log("Project detail:", data);
+
+        setProject(data);
+      } catch (error) {
+        console.error("Lỗi lấy chi tiết project:", error);
+        setError("Không thể tải thông tin dự án.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjectDetail();
+  }, [id]);
+
+  const getYoutubeEmbedUrl = (url) => {
+    if (!url) return "";
+
+    try {
+      const parsedUrl = new URL(url);
+
+      // Link dạng:
+      // https://youtu.be/mAgLR0jZAjc?si=xxxx
+      if (parsedUrl.hostname === "youtu.be") {
+        const videoId = parsedUrl.pathname.substring(1);
+
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+
+      // Link dạng:
+      // https://www.youtube.com/watch?v=mAgLR0jZAjc
+      if (parsedUrl.hostname.includes("youtube.com")) {
+        const videoId = parsedUrl.searchParams.get("v");
+
+        if (videoId) {
+          return `https://www.youtube.com/embed/${videoId}`;
+        }
+
+        // Nếu API đã lưu sẵn dạng embed
+        if (parsedUrl.pathname.startsWith("/embed/")) {
+          return url;
+        }
+      }
+
+      return "";
+    } catch (error) {
+      console.error("YouTube URL không hợp lệ:", error);
+      return "";
+    }
+  };
+
+  // =========================
+  // LẤY CÁC PROJECT KHÁC
+  // =========================
+  useEffect(() => {
+    const fetchRelatedProjects = async () => {
+      try {
+        const data = await getAllProjects();
+
+        const filteredProjects = data.filter((item) => item.id !== Number(id));
+
+        setRelatedProjects(filteredProjects);
+      } catch (error) {
+        console.error("Lỗi lấy dự án liên quan:", error);
+      }
+    };
+
+    fetchRelatedProjects();
+  }, [id]);
+
+  // =========================
+  // AUTO SLIDER
+  // =========================
   useEffect(() => {
     const maxIndex = Math.max(0, relatedProjects.length - slidesToShow);
+
+    if (relatedProjects.length <= slidesToShow) {
+      return;
+    }
+
     const interval = setInterval(() => {
       setActiveSlide((current) => (current >= maxIndex ? 0 : current + 1));
     }, 3200);
@@ -59,74 +119,163 @@ function ProjectDetail() {
     return () => clearInterval(interval);
   }, [relatedProjects.length]);
 
+  // =========================
+  // LOADING
+  // =========================
+  if (loading) {
+    return <p className="project-loading">Đang tải dự án...</p>;
+  }
+
+  // =========================
+  // ERROR
+  // =========================
+  if (error) {
+    return <p className="project-error">{error}</p>;
+  }
+
+  // =========================
+  // NOT FOUND
+  // =========================
+  if (!project) {
+    return <p className="project-empty">Không tìm thấy dự án.</p>;
+  }
+
   return (
     <>
       <section className="project-detail">
+        {/* HEADER */}
         <div className="detail-header">
           <div className="detail-info">
-            <p className="tagline">{t('projectDetail.tagline')}</p>
-            <h2>WORKSHOP REBORN | LESS IS MORE</h2>
-            <p className="description">{t('projectDetail.shortDescription', 'Mô tả dự án...')}</p>
+            <p className="tagline">
+              {isZh ? project.category?.nameZh : project.category?.nameVi}
+            </p>
+
+            <h2>{isZh ? project.titleZh : project.titleVi}</h2>
+
+            <p className="description">
+              {isZh ? project.descriptionZh : project.descriptionVi}
+            </p>
           </div>
+
           <div className="info-card">
             <p className="info-label">Client</p>
-            <p className="info-value">Orange Leaders</p>
+
+            <p className="info-value">
+              {isZh ? project.clientNameZh : project.clientNameVi}
+            </p>
+
             <div className="info-row">
               <p className="info-label">Location</p>
-              <p className="info-value">Estica Cap</p>
+
+              <p className="info-value">
+                {isZh ? project.category?.nameZh : project.category?.nameVi}
+              </p>
             </div>
+
             <div className="info-row">
               <p className="info-label">Launch Date</p>
-              <p className="info-value">Wed May 05 2023</p>
+
+              <p className="info-value">{project.completionYear}</p>
             </div>
           </div>
         </div>
 
+        {/* =========================
+            IMAGES
+        ========================= */}
+
         <div className="visual-grid">
           <div className="left-visual image-card">
-            <div className="image-placeholder2"><img src={image6} alt="" /></div>
+            <div className="image-placeholder2">
+              <img
+                src={project.thumbnailUrl}
+                alt={isZh ? project.titleZh : project.titleVi}
+              />
+            </div>
           </div>
 
           <div className="right-visual">
             <div className="right-grid">
-              <div className="image-card small-card"><img src={event1} alt="" /></div>
-              <div className="image-card small-card"><img src={event2} alt="" /></div>
-              <div className="image-card small-card"><img src={event3} alt="" /></div>
-              <div className="image-card small-card"><img src={event4} alt="" /></div>
-            </div>          
+              {project.galleries?.map((image) => (
+                <div className="image-card small-card" key={image.id}>
+                  <img
+                    src={image.imageUrl}
+                    alt={
+                      isZh
+                        ? image.captionZh || project.titleZh
+                        : image.captionVi || project.titleVi
+                    }
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
+        {/* =========================
+            VIDEO
+        ========================= */}
+
+        {project.videoEmbedUrl && (
+          <div className="project-video">
+            <iframe
+              src={getYoutubeEmbedUrl(project.videoEmbedUrl)}
+              title={project.titleVi}
+              width="100%"
+              height="500"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
+
+        {/* =========================
+            STATS
+        ========================= */}
+
         <div className="stats-block">
-          <h3>{t('projectDetail.statsTitle')}</h3>
+          <h3>{isZh ? "项目成果" : "THÀNH QUẢ DỰ ÁN"}</h3>
+
           <p className="stats-description">
-            Giới thiệu quy mô dự án và các thành công dự án mang lại.
+            {isZh ? project.descriptionZh : project.descriptionVi}
           </p>
+
           <div className="stats-list">
             <div className="stats-item">
               <span className="bullet" />
-              <p>Đạt mức tăng nhận diện thương hiệu sau chiến dịch SPA.</p>
+
+              <p>{isZh ? project.statusZh : project.statusVi}</p>
             </div>
+
             <div className="stats-item">
               <span className="bullet" />
-              <p>
-                Được khách hàng đánh giá cao về chất lượng hình ảnh và nội dung.
-              </p>
+
+              <p>{isZh ? project.clientNameZh : project.clientNameVi}</p>
             </div>
+
             <div className="stats-item">
               <span className="bullet" />
+
               <p>
-                Hoàn thành đúng tiến độ với đội ngũ TP Media đồng hành xuyên
-                suốt.
+                {isZh
+                  ? `完成年份：${project.completionYear}`
+                  : `Hoàn thành năm ${project.completionYear}`}
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* =========================
+          RELATED PROJECTS
+      ========================= */}
+
       <section className="related-projects">
         <div className="related-header">
-          <h3>OTHER PROJECTS</h3>
+          <h3>{isZh ? "OTHER PROJECTS" : "OTHER PROJECTS"}</h3>
         </div>
+
         <div
           className="related-slider"
           style={{
@@ -135,17 +284,27 @@ function ProjectDetail() {
           }}
         >
           <div className="slider-track">
-            {relatedProjects.map((project, index) => (
-              <article key={index} className="slider-card">
+            {relatedProjects.map((item) => (
+              <Link
+                to={`/projectdetail/${item.id}`}
+                key={item.id}
+                className="slider-card"
+              >
                 <div
                   className="slider-image"
-                  style={{ backgroundImage: `url(${project.image})` }}
+                  style={{
+                    backgroundImage: `url(${item.thumbnailUrl})`,
+                  }}
                 />
+
                 <div className="slider-copy">
-                  <p className="slider-category">{project.category}</p>
-                  <h4>{project.title}</h4>
+                  <p className="slider-category">
+                    {isZh ? item.category?.nameZh : item.category?.nameVi}
+                  </p>
+
+                  <h4>{isZh ? item.titleZh : item.titleVi}</h4>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
